@@ -1,0 +1,1390 @@
+=== SIMSCAPE BLOCK REFERENCE — MATLAB R2025b ===
+
+
+--- nesl_utility_internal (22 bloques) ---
+nesl_utility_internal/PS-Simulink Converter
+nesl_utility_internal/PS-Simulink Converter/EVAL_KEY
+nesl_utility_internal/PS-Simulink Converter/EVAL_KEY/Ground
+nesl_utility_internal/PS-Simulink Converter/EVAL_KEY/output
+nesl_utility_internal/PS-Simulink Converter/input
+nesl_utility_internal/PS-Simulink Converter/output
+nesl_utility_internal/Simulink-PS Converter
+nesl_utility_internal/Simulink-PS Converter/input0
+nesl_utility_internal/Simulink-PS Converter/EVAL_KEY
+nesl_utility_internal/Simulink-PS Converter/EVAL_KEY/input0
+nesl_utility_internal/Simulink-PS Converter/EVAL_KEY/input1
+nesl_utility_internal/Simulink-PS Converter/EVAL_KEY/input2
+nesl_utility_internal/Simulink-PS Converter/EVAL_KEY/Terminator0
+nesl_utility_internal/Simulink-PS Converter/EVAL_KEY/Terminator1
+nesl_utility_internal/Simulink-PS Converter/EVAL_KEY/Terminator2
+nesl_utility_internal/Simulink-PS Converter/input1
+nesl_utility_internal/Simulink-PS Converter/input2
+nesl_utility_internal/Simulink-PS Converter/output
+nesl_utility_internal/Solver Configuration
+nesl_utility_internal/Solver Configuration/EVAL_KEY
+nesl_utility_internal/Solver Configuration/port
+nesl_utility_internal/Connection Port
+
+--- SimscapeNetworkCouplersLib (435 bloques) ---
+SimscapeNetworkCouplersLib/Fundamental Components
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (discrete->continuous)
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (discrete->continuous)/u
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (discrete->continuous)/1//h2
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (discrete->continuous)/Constant
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (discrete->continuous)/Constant1
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (discrete->continuous)/Constant2
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (discrete->continuous)/Delay
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (discrete->continuous)/Delay 1
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (discrete->continuous)/Ignore the first output
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (discrete->continuous)/Integrator
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (discrete->continuous)/Product
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (discrete->continuous)/Pulse Generator
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (discrete->continuous)/Sum
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (discrete->continuous)/Sum4
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (discrete->continuous)/Zero-Order Hold
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (discrete->continuous)/y
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/u
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Abs
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Constant
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Constant2
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Delay
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Product
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Resettable Delay
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Sum
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Sum1
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Sum2
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Sum4
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Update derivative estimate
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Update derivative estimate/u
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Update derivative estimate/Trigger
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Update derivative estimate/1//h2
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Update derivative estimate/Constant
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Update derivative estimate/Constant1
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Update derivative estimate/Sum
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Update derivative estimate/Switch
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Update derivative estimate/Unit Delay
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Update derivative estimate/Wait one sample
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/Update derivative estimate/Out1
+SimscapeNetworkCouplersLib/Fundamental Components/Prediction (slow->fast)/y
+SimscapeNetworkCouplersLib/Fundamental Components/Smoothing (continuous->discrete)
+SimscapeNetworkCouplersLib/Fundamental Components/Smoothing (continuous->discrete)/u
+SimscapeNetworkCouplersLib/Fundamental Components/Smoothing (continuous->discrete)/Gain
+SimscapeNetworkCouplersLib/Fundamental Components/Smoothing (continuous->discrete)/Integrator
+SimscapeNetworkCouplersLib/Fundamental Components/Smoothing (continuous->discrete)/Sum
+SimscapeNetworkCouplersLib/Fundamental Components/Smoothing (continuous->discrete)/y
+SimscapeNetworkCouplersLib/Fundamental Components/Smoothing (fast->slow)
+SimscapeNetworkCouplersLib/Fundamental Components/Smoothing (fast->slow)/u
+SimscapeNetworkCouplersLib/Fundamental Components/Smoothing (fast->slow)/For Each Subsystem
+SimscapeNetworkCouplersLib/Fundamental Components/Smoothing (fast->slow)/For Each Subsystem/u
+SimscapeNetworkCouplersLib/Fundamental Components/Smoothing (fast->slow)/For Each Subsystem/For Each
+SimscapeNetworkCouplersLib/Fundamental Components/Smoothing (fast->slow)/For Each Subsystem/Gain
+SimscapeNetworkCouplersLib/Fundamental Components/Smoothing (fast->slow)/For Each Subsystem/Sum of Elements
+SimscapeNetworkCouplersLib/Fundamental Components/Smoothing (fast->slow)/For Each Subsystem/Tapped Delay
+SimscapeNetworkCouplersLib/Fundamental Components/Smoothing (fast->slow)/For Each Subsystem/y
+SimscapeNetworkCouplersLib/Fundamental Components/Smoothing (fast->slow)/y
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/current
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/Controlled Voltage Source
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/Current Sensor
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/Electrical Reference
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/Interface
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/Interface/through1
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/Interface/through2
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/Interface/Continuous
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/Interface/Continuous/through2
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/Interface/Continuous/through1
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/Interface/Continuous/1//C
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/Interface/Continuous/Integrator
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/Interface/Continuous/Sum
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/Interface/Continuous/across2
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/Interface/Continuous/across1
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/Interface/across2
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/Interface/across1
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/Ip
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/Vp
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/1
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 1 Interface/voltage
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 2 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 2 Interface/voltage
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 2 Interface/Controlled Voltage Source
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 2 Interface/Current Sensor
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 2 Interface/Electrical Reference
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 2 Interface/In
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 2 Interface/Vn
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 2 Interface/2
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/Port 2 Interface/current
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/1
+SimscapeNetworkCouplersLib/Network Coupler (Capacitor)/2
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/velocity
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Ideal Force Source
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Ideal Translational Motion Sensor
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Interface
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Interface/across1
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Interface/across2
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Interface/Continuous
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Interface/Continuous/across2
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Interface/Continuous/across1
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Interface/Continuous/-1
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Interface/Continuous/Integrator
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Interface/Continuous/K
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Interface/Continuous/Lambda
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Interface/Continuous/Low-pass filter
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Interface/Continuous/Sum
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Interface/Continuous/Sum2
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Interface/Continuous/through2
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Interface/Continuous/through1
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Interface/through2
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Interface/through1
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Mechanical Translational Reference
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/Mechanical Translational Reference1
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/f1
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/v1
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/1
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 1 Interface/force
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 2 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 2 Interface/force
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 2 Interface/Ideal Force Source
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 2 Interface/Ideal Translational Motion Sensor
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 2 Interface/Mechanical Translational Reference
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 2 Interface/Mechanical Translational Reference1
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 2 Interface/f2
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 2 Interface/v2
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 2 Interface/2
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/Port 2 Interface/velocity
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/1
+SimscapeNetworkCouplersLib/Network Coupler (Compressible Link)/2
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface/d//dt(pressure)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface/Interface
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface/Interface/through1
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface/Interface/through2
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface/Interface/Continuous
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface/Interface/Continuous/through2
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface/Interface/Continuous/through1
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface/Interface/Continuous/Integrator
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface/Interface/Continuous/Sum
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface/Interface/Continuous/across2
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface/Interface/Continuous/across1
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface/Interface/across2
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface/Interface/across1
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface/Simscape Component
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface/der(p1)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface/p1
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface/1
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 1 Interface/pressure
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 2 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 2 Interface/pressure
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 2 Interface/Simscape Component
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 2 Interface/der(p2)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 2 Interface/p2
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 2 Interface/2
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/Port 2 Interface/d//dt(pressure)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/1
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (IL))/2
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/d//dt(pressure)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/d//dt(temperature)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/der(p1)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/der(T1)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/der(p2)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/der(T2)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/Continuous
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/Continuous/der(p2)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/Continuous/der(p1)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/Continuous/der(T2)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/Continuous/der(T1)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/Continuous/IntegratorP
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/Continuous/IntegratorT
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/Continuous/Sum
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/Continuous/Sum1
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/Continuous/p2
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/Continuous/p1
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/Continuous/T2
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/Continuous/T1
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/p2
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/T2
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/T1
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Interface/p1
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/Simscape Component
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/T1
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/der(T1)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/der(p1)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/p1
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/1
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/pressure
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 1 Interface/temperature
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 2 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 2 Interface/pressure
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 2 Interface/temperature
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 2 Interface/Simscape Component
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 2 Interface/T2
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 2 Interface/der(T2)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 2 Interface/der(p2)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 2 Interface/p2
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 2 Interface/2
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 2 Interface/d//dt(pressure)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/Port 2 Interface/d//dt(temperature)
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/1
+SimscapeNetworkCouplersLib/Network Coupler (Constant Volume Chamber (TL))/2
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/current
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Controlled Current Source
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Electrical Reference
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Electrical Reference1
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Interface
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Interface/across1
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Interface/through2
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Interface/Continuous
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Interface/Continuous/through2
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Interface/Continuous/across1
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Interface/Continuous/-1
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Interface/Continuous/1//tau
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Interface/Continuous/1//tau1
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Interface/Continuous/Integrator
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Interface/Continuous/Integrator1
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Interface/Continuous/Sum
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Interface/Continuous/Sum1
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Interface/Continuous/across2
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Interface/Continuous/through1
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Interface/across2
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Interface/through1
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Ip
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Voltage Sensor
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/Vp
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/1
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 1 Interface/voltage
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 2 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 2 Interface/voltage
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 2 Interface/Controlled Voltage Source
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 2 Interface/Current Sensor
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 2 Interface/Electrical Reference
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 2 Interface/In
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 2 Interface/Vn
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 2 Interface/2
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/Port 2 Interface/current
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/1
+SimscapeNetworkCouplersLib/Network Coupler (Current-Voltage)/2
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/speed
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Ideal Rotational Motion Sensor1
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Interface
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Interface/across1
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Interface/across2
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Interface/Continuous
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Interface/Continuous/across2
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Interface/Continuous/across1
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Interface/Continuous/-1
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Interface/Continuous/Integrator
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Interface/Continuous/K
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Interface/Continuous/Lambda
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Interface/Continuous/Low-pass filter
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Interface/Continuous/Sum
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Interface/Continuous/Sum2
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Interface/Continuous/through2
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Interface/Continuous/through1
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Interface/through2
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Interface/through1
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Mechanical Rotational Reference2
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Mechanical Rotational Reference3
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/T1
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/Tau1
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/w1
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/1
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 1 Interface/torque
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 2 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 2 Interface/torque
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 2 Interface/Ideal Rotational Motion Sensor2
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 2 Interface/Mechanical Rotational Reference1
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 2 Interface/Mechanical Rotational Reference4
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 2 Interface/T2
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 2 Interface/Tau2
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 2 Interface/w2
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 2 Interface/2
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/Port 2 Interface/speed
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/1
+SimscapeNetworkCouplersLib/Network Coupler (Flexible Shaft)/2
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/voltage
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Controlled Current Source
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Electrical Reference
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Electrical Reference1
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Interface
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Interface/across1
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Interface/across2
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Interface/Continuous
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Interface/Continuous/across2
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Interface/Continuous/across1
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Interface/Continuous/-1
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Interface/Continuous/1//L
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Interface/Continuous/Integrator
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Interface/Continuous/Sum
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Interface/Continuous/through2
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Interface/Continuous/through1
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Interface/through2
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Interface/through1
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Ip
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Voltage Sensor
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/Vp
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/1
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 1 Interface/current
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 2 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 2 Interface/current
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 2 Interface/Controlled Current Source
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 2 Interface/Electrical Reference
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 2 Interface/Electrical Reference1
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 2 Interface/In
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 2 Interface/Vn
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 2 Interface/Voltage Sensor
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 2 Interface/2
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/Port 2 Interface/voltage
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/1
+SimscapeNetworkCouplersLib/Network Coupler (Inductor)/2
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/heat flow
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/Controlled Temperature Source
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/Heat Flow Rate Sensor
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/Interface
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/Interface/through1
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/Interface/through2
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/Interface/Continuous
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/Interface/Continuous/through2
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/Interface/Continuous/through1
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/Interface/Continuous/1//thermalMass
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/Interface/Continuous/Integrator
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/Interface/Continuous/Sum
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/Interface/Continuous/across2
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/Interface/Continuous/across1
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/Interface/across2
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/Interface/across1
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/T1
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/Thermal Reference
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/q1
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/1
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 1 Interface/temperature
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 2 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 2 Interface/temperature
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 2 Interface/Controlled Temperature Source
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 2 Interface/Heat Flow Rate Sensor
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 2 Interface/T2
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 2 Interface/Thermal Reference
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 2 Interface/q2
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 2 Interface/2
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/Port 2 Interface/heat flow
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/1
+SimscapeNetworkCouplersLib/Network Coupler (Thermal Mass)/2
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/voltage
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Controlled Voltage Source
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Current Sensor
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Electrical Reference
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Interface
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Interface/through1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Interface/across2
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Interface/Continuous
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Interface/Continuous/across2
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Interface/Continuous/through1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Interface/Continuous/-1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Interface/Continuous/1//tau
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Interface/Continuous/1//tau1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Interface/Continuous/Integrator
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Interface/Continuous/Integrator1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Interface/Continuous/Sum
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Interface/Continuous/Sum1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Interface/Continuous/through2
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Interface/Continuous/across1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Interface/through2
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Interface/across1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Ip
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/Vp
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 1 Interface/current
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 2 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 2 Interface/current
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 2 Interface/Controlled Current Source
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 2 Interface/Electrical Reference
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 2 Interface/Electrical Reference1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 2 Interface/In
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 2 Interface/Vn
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 2 Interface/Voltage Sensor
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 2 Interface/2
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/Port 2 Interface/voltage
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Current)/2
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/current
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Controlled Voltage Source
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Current Sensor
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Electrical Reference
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/I1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Interface
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Interface/through1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Interface/through2
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Interface/Continuous
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Interface/Continuous/through2
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Interface/Continuous/through1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Interface/Continuous/Memory1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Interface/Continuous/Memory2
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Interface/Continuous/R1+R2
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Interface/Continuous/R2+R1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Interface/Continuous/Sum
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Interface/Continuous/Sum1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Interface/Continuous/across2
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Interface/Continuous/across1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Interface/across2
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/Interface/across1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/R1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/V1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 1 Interface/voltage
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 2 Interface
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 2 Interface/voltage
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 2 Interface/Controlled Voltage Source
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 2 Interface/Current Sensor
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 2 Interface/Electrical Reference
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 2 Interface/I2
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 2 Interface/R2
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 2 Interface/V2
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 2 Interface/2
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/Port 2 Interface/current
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/1
+SimscapeNetworkCouplersLib/Network Coupler (Voltage-Voltage)/2
+
+--- nesl_utility (30 bloques) ---
+nesl_utility/Array Connection
+nesl_utility/Connection Label
+nesl_utility/Network Couplers
+nesl_utility/PS-Simulink Converter
+nesl_utility/PS-Simulink Converter/EVAL_KEY
+nesl_utility/PS-Simulink Converter/EVAL_KEY/Ground
+nesl_utility/PS-Simulink Converter/EVAL_KEY/output
+nesl_utility/PS-Simulink Converter/input
+nesl_utility/PS-Simulink Converter/output
+nesl_utility/Probe
+nesl_utility/Simscape Component
+nesl_utility/Simscape Bus
+nesl_utility/Simulink-PS Converter
+nesl_utility/Simulink-PS Converter/input0
+nesl_utility/Simulink-PS Converter/EVAL_KEY
+nesl_utility/Simulink-PS Converter/EVAL_KEY/input0
+nesl_utility/Simulink-PS Converter/EVAL_KEY/input1
+nesl_utility/Simulink-PS Converter/EVAL_KEY/input2
+nesl_utility/Simulink-PS Converter/EVAL_KEY/Terminator0
+nesl_utility/Simulink-PS Converter/EVAL_KEY/Terminator1
+nesl_utility/Simulink-PS Converter/EVAL_KEY/Terminator2
+nesl_utility/Simulink-PS Converter/input1
+nesl_utility/Simulink-PS Converter/input2
+nesl_utility/Simulink-PS Converter/output
+nesl_utility/Solver Configuration
+nesl_utility/Solver Configuration/EVAL_KEY
+nesl_utility/Solver Configuration/port
+nesl_utility/Spectrum Analyzer
+nesl_utility/Variant Connector
+nesl_utility/Connection Port
+
+--- fl_lib (338 bloques) ---
+fl_lib/Electrical
+fl_lib/Electrical/Electrical Elements
+fl_lib/Electrical/Electrical Elements/Capacitor
+fl_lib/Electrical/Electrical Elements/Diode
+fl_lib/Electrical/Electrical Elements/Electrical Reference
+fl_lib/Electrical/Electrical Elements/Floating Reference
+fl_lib/Electrical/Electrical Elements/Gyrator
+fl_lib/Electrical/Electrical Elements/Ideal Transformer
+fl_lib/Electrical/Electrical Elements/Inductor
+fl_lib/Electrical/Electrical Elements/Infinite Resistance
+fl_lib/Electrical/Electrical Elements/Memristor
+fl_lib/Electrical/Electrical Elements/Mutual Inductor
+fl_lib/Electrical/Electrical Elements/Op-Amp
+fl_lib/Electrical/Electrical Elements/Open Circuit
+fl_lib/Electrical/Electrical Elements/Resistor
+fl_lib/Electrical/Electrical Elements/Rotational Electromechanical Converter
+fl_lib/Electrical/Electrical Elements/Switch
+fl_lib/Electrical/Electrical Elements/Thermal Resistor
+fl_lib/Electrical/Electrical Elements/Translational Electromechanical Converter
+fl_lib/Electrical/Electrical Elements/Variable Resistor
+fl_lib/Electrical/Electrical Sensors
+fl_lib/Electrical/Electrical Sensors/Current Sensor
+fl_lib/Electrical/Electrical Sensors/Voltage Sensor
+fl_lib/Electrical/Electrical Sources
+fl_lib/Electrical/Electrical Sources/AC Current Source
+fl_lib/Electrical/Electrical Sources/AC Voltage Source
+fl_lib/Electrical/Electrical Sources/Controlled Current Source
+fl_lib/Electrical/Electrical Sources/Controlled Voltage Source
+fl_lib/Electrical/Electrical Sources/Current-Controlled Current Source
+fl_lib/Electrical/Electrical Sources/Current-Controlled Voltage Source
+fl_lib/Electrical/Electrical Sources/DC Current Source
+fl_lib/Electrical/Electrical Sources/DC Voltage Source
+fl_lib/Electrical/Electrical Sources/Voltage-Controlled Current Source
+fl_lib/Electrical/Electrical Sources/Voltage-Controlled Voltage Source
+fl_lib/Gas
+fl_lib/Gas/Elements
+fl_lib/Gas/Elements/Absolute Reference (G)
+fl_lib/Gas/Elements/Cap (G)
+fl_lib/Gas/Elements/Constant Volume Chamber (G)
+fl_lib/Gas/Elements/Controlled Reservoir (G)
+fl_lib/Gas/Elements/Flow Resistance (G)
+fl_lib/Gas/Elements/Infinite Flow Resistance (G)
+fl_lib/Gas/Elements/Local Restriction (G)
+fl_lib/Gas/Elements/Pipe (G)
+fl_lib/Gas/Elements/Reservoir (G)
+fl_lib/Gas/Elements/Rotational Mechanical Converter (G)
+fl_lib/Gas/Elements/Translational Mechanical Converter (G)
+fl_lib/Gas/Sensors
+fl_lib/Gas/Sensors/Flow Rate Sensor (G)
+fl_lib/Gas/Sensors/Mach Number Sensor (G)
+fl_lib/Gas/Sensors/Pressure & Temperature Sensor (G)
+fl_lib/Gas/Sensors/Thermodynamic Properties Sensor (G)
+fl_lib/Gas/Sources
+fl_lib/Gas/Sources/Flow Rate Source (G)
+fl_lib/Gas/Sources/Pressure Source (G)
+fl_lib/Gas/Utilities
+fl_lib/Gas/Utilities/Gas Properties (G)
+fl_lib/Hydraulic
+fl_lib/Hydraulic/Hydraulic Elements
+fl_lib/Hydraulic/Hydraulic Elements/Constant Area Hydraulic Orifice
+fl_lib/Hydraulic/Hydraulic Elements/Constant Volume Hydraulic Chamber
+fl_lib/Hydraulic/Hydraulic Elements/Fluid Inertia
+fl_lib/Hydraulic/Hydraulic Elements/Hydraulic Cap
+fl_lib/Hydraulic/Hydraulic Elements/Hydraulic Piston Chamber
+fl_lib/Hydraulic/Hydraulic Elements/Hydraulic Reference
+fl_lib/Hydraulic/Hydraulic Elements/Hydraulic Resistive Tube
+fl_lib/Hydraulic/Hydraulic Elements/Infinite Hydraulic Resistance
+fl_lib/Hydraulic/Hydraulic Elements/Linear Hydraulic Resistance
+fl_lib/Hydraulic/Hydraulic Elements/Rotational Hydro-Mechanical Converter
+fl_lib/Hydraulic/Hydraulic Elements/Translational Hydro-Mechanical Converter
+fl_lib/Hydraulic/Hydraulic Elements/Variable Area Hydraulic Orifice
+fl_lib/Hydraulic/Hydraulic Elements/Variable Hydraulic Chamber
+fl_lib/Hydraulic/Hydraulic Sensors
+fl_lib/Hydraulic/Hydraulic Sensors/Hydraulic Flow Rate Sensor
+fl_lib/Hydraulic/Hydraulic Sensors/Hydraulic Pressure Sensor
+fl_lib/Hydraulic/Hydraulic Sources
+fl_lib/Hydraulic/Hydraulic Sources/Hydraulic Constant Flow Rate Source
+fl_lib/Hydraulic/Hydraulic Sources/Hydraulic Constant Mass Flow Rate Source
+fl_lib/Hydraulic/Hydraulic Sources/Hydraulic Constant Pressure Source
+fl_lib/Hydraulic/Hydraulic Sources/Hydraulic Flow Rate Source
+fl_lib/Hydraulic/Hydraulic Sources/Hydraulic Mass Flow Rate Source
+fl_lib/Hydraulic/Hydraulic Sources/Hydraulic Pressure Source
+fl_lib/Hydraulic/Hydraulic Utilities
+fl_lib/Hydraulic/Hydraulic Utilities/Custom Hydraulic Fluid
+fl_lib/Hydraulic/Hydraulic Utilities/Interface (H-IL)
+fl_lib/Isothermal Liquid
+fl_lib/Isothermal Liquid/Elements
+fl_lib/Isothermal Liquid/Elements/Cap (IL)
+fl_lib/Isothermal Liquid/Elements/Constant Volume Chamber (IL)
+fl_lib/Isothermal Liquid/Elements/Flow Resistance (IL)
+fl_lib/Isothermal Liquid/Elements/Infinite Flow Resistance (IL)
+fl_lib/Isothermal Liquid/Elements/Laminar Leakage (IL)
+fl_lib/Isothermal Liquid/Elements/Local Restriction (IL)
+fl_lib/Isothermal Liquid/Elements/Pipe (IL)
+fl_lib/Isothermal Liquid/Elements/Reservoir (IL)
+fl_lib/Isothermal Liquid/Elements/Rotational Mechanical Converter (IL)
+fl_lib/Isothermal Liquid/Elements/Translational Mechanical Converter (IL)
+fl_lib/Isothermal Liquid/Sensors
+fl_lib/Isothermal Liquid/Sensors/Flow Rate Sensor (IL)
+fl_lib/Isothermal Liquid/Sensors/Liquid Properties Sensor (IL)
+fl_lib/Isothermal Liquid/Sensors/Pressure Sensor (IL)
+fl_lib/Isothermal Liquid/Sources
+fl_lib/Isothermal Liquid/Sources/Flow Rate Source (IL)
+fl_lib/Isothermal Liquid/Sources/Pressure Source (IL)
+fl_lib/Isothermal Liquid/Utilities
+fl_lib/Isothermal Liquid/Utilities/Isothermal Liquid Properties (IL)
+fl_lib/Magnetic
+fl_lib/Magnetic/Magnetic Elements
+fl_lib/Magnetic/Magnetic Elements/Electromagnetic Converter
+fl_lib/Magnetic/Magnetic Elements/Fundamental Reluctance
+fl_lib/Magnetic/Magnetic Elements/Magnetic Reference
+fl_lib/Magnetic/Magnetic Elements/Permanent Magnet
+fl_lib/Magnetic/Magnetic Elements/Reluctance
+fl_lib/Magnetic/Magnetic Elements/Reluctance Force Actuator
+fl_lib/Magnetic/Magnetic Elements/Variable Reluctance
+fl_lib/Magnetic/Magnetic Sensors
+fl_lib/Magnetic/Magnetic Sensors/Flux Sensor
+fl_lib/Magnetic/Magnetic Sensors/MMF Sensor
+fl_lib/Magnetic/Magnetic Sources
+fl_lib/Magnetic/Magnetic Sources/Controlled Flux Source
+fl_lib/Magnetic/Magnetic Sources/Controlled MMF Source
+fl_lib/Magnetic/Magnetic Sources/Flux Source
+fl_lib/Magnetic/Magnetic Sources/MMF Source
+fl_lib/Mechanical
+fl_lib/Mechanical/Mechanical Sensors
+fl_lib/Mechanical/Mechanical Sensors/Ideal Force Sensor
+fl_lib/Mechanical/Mechanical Sensors/Ideal Rotational Motion Sensor
+fl_lib/Mechanical/Mechanical Sensors/Ideal Torque Sensor
+fl_lib/Mechanical/Mechanical Sensors/Ideal Translational Motion Sensor
+fl_lib/Mechanical/Mechanical Sources
+fl_lib/Mechanical/Mechanical Sources/Ideal Angular Velocity Source
+fl_lib/Mechanical/Mechanical Sources/Ideal Force Source
+fl_lib/Mechanical/Mechanical Sources/Ideal Torque Source
+fl_lib/Mechanical/Mechanical Sources/Ideal Translational Velocity Source
+fl_lib/Mechanical/Mechanisms
+fl_lib/Mechanical/Mechanisms/Gear Box
+fl_lib/Mechanical/Mechanisms/Lever
+fl_lib/Mechanical/Mechanisms/Slider-Crank
+fl_lib/Mechanical/Mechanisms/Wheel and Axle
+fl_lib/Mechanical/Multibody Interfaces
+fl_lib/Mechanical/Multibody Interfaces/Rotational Multibody Interface
+fl_lib/Mechanical/Multibody Interfaces/Translational Multibody Interface
+fl_lib/Mechanical/Rotational Elements
+fl_lib/Mechanical/Rotational Elements/Inertia
+fl_lib/Mechanical/Rotational Elements/Mechanical Rotational Reference
+fl_lib/Mechanical/Rotational Elements/Rotational Damper
+fl_lib/Mechanical/Rotational Elements/Rotational Free End
+fl_lib/Mechanical/Rotational Elements/Rotational Friction
+fl_lib/Mechanical/Rotational Elements/Rotational Hard Stop
+fl_lib/Mechanical/Rotational Elements/Rotational Inerter
+fl_lib/Mechanical/Rotational Elements/Rotational Spring
+fl_lib/Mechanical/Translational Elements
+fl_lib/Mechanical/Translational Elements/Mass
+fl_lib/Mechanical/Translational Elements/Mechanical Translational Reference
+fl_lib/Mechanical/Translational Elements/Translational Friction
+fl_lib/Mechanical/Translational Elements/Translational Inerter
+fl_lib/Mechanical/Translational Elements/Translational Damper
+fl_lib/Mechanical/Translational Elements/Translational Free End
+fl_lib/Mechanical/Translational Elements/Translational Hard Stop
+fl_lib/Mechanical/Translational Elements/Translational Spring
+fl_lib/Moist Air
+fl_lib/Moist Air/Elements
+fl_lib/Moist Air/Elements/Absolute Reference (MA)
+fl_lib/Moist Air/Elements/Cap (MA)
+fl_lib/Moist Air/Elements/Constant Volume Chamber (MA)
+fl_lib/Moist Air/Elements/Flow Resistance (MA)
+fl_lib/Moist Air/Elements/Infinite Flow Resistance (MA)
+fl_lib/Moist Air/Elements/Local Restriction (MA)
+fl_lib/Moist Air/Elements/Moisture Separator (MA)
+fl_lib/Moist Air/Elements/Pipe (MA)
+fl_lib/Moist Air/Elements/Reservoir (MA)
+fl_lib/Moist Air/Elements/Rotational Mechanical Converter (MA)
+fl_lib/Moist Air/Elements/Translational Mechanical Converter (MA)
+fl_lib/Moist Air/Sensors
+fl_lib/Moist Air/Sensors/Flow Rate Sensor (MA)
+fl_lib/Moist Air/Sensors/Measurement Selector (MA)
+fl_lib/Moist Air/Sensors/Moisture & Trace Gas Sensor (MA)
+fl_lib/Moist Air/Sensors/Pressure & Temperature Sensor (MA)
+fl_lib/Moist Air/Sensors/Thermodynamic Properties Sensor (MA)
+fl_lib/Moist Air/Sources
+fl_lib/Moist Air/Sources/Flow Rate Source (MA)
+fl_lib/Moist Air/Sources/Moisture & Trace Gas Sources
+fl_lib/Moist Air/Sources/Moisture & Trace Gas Sources/Moisture Source (MA)
+fl_lib/Moist Air/Sources/Moisture & Trace Gas Sources/Trace Gas Source (MA)
+fl_lib/Moist Air/Sources/Pressure Source (MA)
+fl_lib/Moist Air/Utilities
+fl_lib/Moist Air/Utilities/Moist Air Properties (MA)
+fl_lib/Physical Signals
+fl_lib/Physical Signals/Delays
+fl_lib/Physical Signals/Delays/PS Constant Delay
+fl_lib/Physical Signals/Delays/PS Variable Delay
+fl_lib/Physical Signals/Discrete
+fl_lib/Physical Signals/Discrete/PS Asynchronous Sample & Hold
+fl_lib/Physical Signals/Functions
+fl_lib/Physical Signals/Functions/PS Add
+fl_lib/Physical Signals/Functions/PS Bias
+fl_lib/Physical Signals/Functions/PS Concatenate
+fl_lib/Physical Signals/Functions/PS Divide
+fl_lib/Physical Signals/Functions/PS Dot Product
+fl_lib/Physical Signals/Functions/PS Gain
+fl_lib/Physical Signals/Functions/PS Math Function
+fl_lib/Physical Signals/Functions/PS Product
+fl_lib/Physical Signals/Functions/PS Subtract
+fl_lib/Physical Signals/Functions/PS Sum of Elements
+fl_lib/Physical Signals/Linear Operators
+fl_lib/Physical Signals/Linear Operators/PS Integrator
+fl_lib/Physical Signals/Linear Operators/PS State-Space
+fl_lib/Physical Signals/Linear Operators/PS Transfer Function
+fl_lib/Physical Signals/Lookup Tables
+fl_lib/Physical Signals/Lookup Tables/PS Lookup Table (1D)
+fl_lib/Physical Signals/Lookup Tables/PS Lookup Table (2D)
+fl_lib/Physical Signals/Lookup Tables/PS Lookup Table (3D)
+fl_lib/Physical Signals/Lookup Tables/PS Lookup Table (4D)
+fl_lib/Physical Signals/Lookup Tables/PS Scattered Lookup Table (2D)
+fl_lib/Physical Signals/Lookup Tables/PS Scattered Lookup Table (3D)
+fl_lib/Physical Signals/Nonlinear Operators
+fl_lib/Physical Signals/Nonlinear Operators/PS Abs
+fl_lib/Physical Signals/Nonlinear Operators/PS Ceil
+fl_lib/Physical Signals/Nonlinear Operators/PS Dead Zone
+fl_lib/Physical Signals/Nonlinear Operators/PS Fix
+fl_lib/Physical Signals/Nonlinear Operators/PS Floor
+fl_lib/Physical Signals/Nonlinear Operators/PS Max
+fl_lib/Physical Signals/Nonlinear Operators/PS Min
+fl_lib/Physical Signals/Nonlinear Operators/PS Round
+fl_lib/Physical Signals/Nonlinear Operators/PS Saturation
+fl_lib/Physical Signals/Nonlinear Operators/PS Selector
+fl_lib/Physical Signals/Nonlinear Operators/PS Sign
+fl_lib/Physical Signals/Nonlinear Operators/PS Switch
+fl_lib/Physical Signals/Nonlinear Operators/PS Three-Element Demux
+fl_lib/Physical Signals/Nonlinear Operators/PS Vector Norm
+fl_lib/Physical Signals/Periodic Operators
+fl_lib/Physical Signals/Periodic Operators/PS Constant Offset Estimator
+fl_lib/Physical Signals/Periodic Operators/PS Harmonic Estimator (Amplitude, Phase)
+fl_lib/Physical Signals/Periodic Operators/PS Harmonic Estimator (Real, Imaginary)
+fl_lib/Physical Signals/Periodic Operators/PS RMS Estimator
+fl_lib/Physical Signals/Sinks
+fl_lib/Physical Signals/Sinks/PS Terminator
+fl_lib/Physical Signals/Sources
+fl_lib/Physical Signals/Sources/PS Constant
+fl_lib/Physical Signals/Sources/PS Counter
+fl_lib/Physical Signals/Sources/PS Ramp
+fl_lib/Physical Signals/Sources/PS Random Number
+fl_lib/Physical Signals/Sources/PS Repeating Sequence
+fl_lib/Physical Signals/Sources/PS Sine Wave
+fl_lib/Physical Signals/Sources/PS Step
+fl_lib/Physical Signals/Sources/PS Uniform Random Number
+fl_lib/Physical Signals/Utilities
+fl_lib/Physical Signals/Utilities/PS Signal Specification
+fl_lib/Thermal
+fl_lib/Thermal/Thermal Elements
+fl_lib/Thermal/Thermal Elements/Conductive Heat Transfer
+fl_lib/Thermal/Thermal Elements/Convective Heat Transfer
+fl_lib/Thermal/Thermal Elements/Infinite Thermal Resistance
+fl_lib/Thermal/Thermal Elements/Perfect Insulator
+fl_lib/Thermal/Thermal Elements/Radiative Heat Transfer
+fl_lib/Thermal/Thermal Elements/Thermal Mass
+fl_lib/Thermal/Thermal Elements/Thermal Reference
+fl_lib/Thermal/Thermal Elements/Thermal Resistance
+fl_lib/Thermal/Thermal Elements/Variable Thermal Resistance
+fl_lib/Thermal/Thermal Sensors
+fl_lib/Thermal/Thermal Sensors/Heat Flow Rate Sensor
+fl_lib/Thermal/Thermal Sensors/Temperature Sensor
+fl_lib/Thermal/Thermal Sources
+fl_lib/Thermal/Thermal Sources/Controlled Temperature Source
+fl_lib/Thermal/Thermal Sources/Controlled Heat Flow Rate Source
+fl_lib/Thermal/Thermal Sources/Heat Flow Rate Source
+fl_lib/Thermal/Thermal Sources/Temperature Source
+fl_lib/Thermal Liquid
+fl_lib/Thermal Liquid/Elements
+fl_lib/Thermal Liquid/Elements/Absolute Reference (TL)
+fl_lib/Thermal Liquid/Elements/Cap (TL)
+fl_lib/Thermal Liquid/Elements/Constant Volume Chamber (TL)
+fl_lib/Thermal Liquid/Elements/Controlled Reservoir (TL)
+fl_lib/Thermal Liquid/Elements/Flow Resistance (TL)
+fl_lib/Thermal Liquid/Elements/Infinite Flow Resistance (TL)
+fl_lib/Thermal Liquid/Elements/Local Restriction (TL)
+fl_lib/Thermal Liquid/Elements/Pipe (TL)
+fl_lib/Thermal Liquid/Elements/Reservoir (TL)
+fl_lib/Thermal Liquid/Elements/Rotational Mechanical Converter (TL)
+fl_lib/Thermal Liquid/Elements/Translational Mechanical Converter (TL)
+fl_lib/Thermal Liquid/Sensors
+fl_lib/Thermal Liquid/Sensors/Flow Rate Sensor (TL)
+fl_lib/Thermal Liquid/Sensors/Pressure & Temperature Sensor (TL)
+fl_lib/Thermal Liquid/Sensors/Thermodynamic Properties Sensor (TL)
+fl_lib/Thermal Liquid/Sources
+fl_lib/Thermal Liquid/Sources/Flow Rate Source (TL)
+fl_lib/Thermal Liquid/Sources/Pressure Source (TL)
+fl_lib/Thermal Liquid/Utilities
+fl_lib/Thermal Liquid/Utilities/Thermal Liquid Settings (TL)
+fl_lib/Translational
+fl_lib/Translational/Elements
+fl_lib/Translational/Elements/Mass (PB)
+fl_lib/Translational/Elements/Mass With Friction (PB)
+fl_lib/Translational/Elements/Mass With Length (PB)
+fl_lib/Translational/Elements/Mass With Length & Friction (PB)
+fl_lib/Translational/Elements/Translational Friction (PB)
+fl_lib/Translational/Elements/Translational Initial Spacer (PB)
+fl_lib/Translational/Elements/Translational Damper (PB)
+fl_lib/Translational/Elements/Translational Hard Stop (PB)
+fl_lib/Translational/Elements/Translational Spacer (PB)
+fl_lib/Translational/Elements/Translational Spring (PB)
+fl_lib/Translational/Elements/Translational World (PB)
+fl_lib/Translational/Sensors
+fl_lib/Translational/Sensors/Force Sensor (PB)
+fl_lib/Translational/Sensors/Translational Motion Sensor (PB)
+fl_lib/Translational/Sources
+fl_lib/Translational/Sources/External Translational Velocity Source (PB)
+fl_lib/Translational/Sources/External Force Source (PB)
+fl_lib/Translational/Sources/Force Actuator (PB)
+fl_lib/Translational/Sources/Length Actuator (PB)
+fl_lib/Translational/Sources/Translational Velocity Actuator (PB)
+fl_lib/Translational/Utilities
+fl_lib/Translational/Utilities/Interface (PB-Translational)
+fl_lib/Translational/Utilities/Mechanical Translational Properties (PB)
+fl_lib/Two-Phase Fluid
+fl_lib/Two-Phase Fluid/Elements
+fl_lib/Two-Phase Fluid/Elements/Absolute Reference (2P)
+fl_lib/Two-Phase Fluid/Elements/Cap (2P)
+fl_lib/Two-Phase Fluid/Elements/Constant Volume Chamber (2P)
+fl_lib/Two-Phase Fluid/Elements/Controlled Reservoir (2P)
+fl_lib/Two-Phase Fluid/Elements/Flow Resistance (2P)
+fl_lib/Two-Phase Fluid/Elements/Infinite Flow Resistance (2P)
+fl_lib/Two-Phase Fluid/Elements/Local Restriction (2P)
+fl_lib/Two-Phase Fluid/Elements/Pipe (2P)
+fl_lib/Two-Phase Fluid/Elements/Reservoir (2P)
+fl_lib/Two-Phase Fluid/Elements/Rotational Mechanical Converter (2P)
+fl_lib/Two-Phase Fluid/Elements/Translational Mechanical Converter (2P)
+fl_lib/Two-Phase Fluid/Sensors
+fl_lib/Two-Phase Fluid/Sensors/Flow Rate Sensor (2P)
+fl_lib/Two-Phase Fluid/Sensors/Pressure, Temperature & Internal Energy Sensor (2P)
+fl_lib/Two-Phase Fluid/Sensors/Saturation Properties Sensor (2P)
+fl_lib/Two-Phase Fluid/Sensors/Thermodynamic Properties Sensor (2P)
+fl_lib/Two-Phase Fluid/Sensors/Vapor Quality Sensor (2P)
+fl_lib/Two-Phase Fluid/Sources
+fl_lib/Two-Phase Fluid/Sources/Flow Rate Source (2P)
+fl_lib/Two-Phase Fluid/Sources/Pressure Source (2P)
+fl_lib/Two-Phase Fluid/Utilities
+fl_lib/Two-Phase Fluid/Utilities/Two-Phase Fluid Properties (2P)
+
+--- fl_ps_legacy_lib (45 bloques) ---
+fl_ps_legacy_lib/Legacy Physical Signals
+fl_ps_legacy_lib/Legacy Physical Signals/Delays
+fl_ps_legacy_lib/Legacy Physical Signals/Delays/PS Constant Delay
+fl_ps_legacy_lib/Legacy Physical Signals/Delays/PS Variable Delay
+fl_ps_legacy_lib/Legacy Physical Signals/Discrete
+fl_ps_legacy_lib/Legacy Physical Signals/Discrete/Asynchronous Sample & Hold
+fl_ps_legacy_lib/Legacy Physical Signals/Functions
+fl_ps_legacy_lib/Legacy Physical Signals/Functions/PS Add
+fl_ps_legacy_lib/Legacy Physical Signals/Functions/PS Divide
+fl_ps_legacy_lib/Legacy Physical Signals/Functions/PS Gain
+fl_ps_legacy_lib/Legacy Physical Signals/Functions/PS Math Function
+fl_ps_legacy_lib/Legacy Physical Signals/Functions/PS Product
+fl_ps_legacy_lib/Legacy Physical Signals/Functions/PS Subtract
+fl_ps_legacy_lib/Legacy Physical Signals/Linear Operators
+fl_ps_legacy_lib/Legacy Physical Signals/Linear Operators/PS Integrator
+fl_ps_legacy_lib/Legacy Physical Signals/Lookup Tables
+fl_ps_legacy_lib/Legacy Physical Signals/Lookup Tables/PS Lookup Table (1D)
+fl_ps_legacy_lib/Legacy Physical Signals/Lookup Tables/PS Lookup Table (2D)
+fl_ps_legacy_lib/Legacy Physical Signals/Lookup Tables/PS Lookup Table (3D)
+fl_ps_legacy_lib/Legacy Physical Signals/Lookup Tables/PS Lookup Table (4D)
+fl_ps_legacy_lib/Legacy Physical Signals/Nonlinear Operators
+fl_ps_legacy_lib/Legacy Physical Signals/Nonlinear Operators/PS Abs
+fl_ps_legacy_lib/Legacy Physical Signals/Nonlinear Operators/PS Ceil
+fl_ps_legacy_lib/Legacy Physical Signals/Nonlinear Operators/PS Dead Zone
+fl_ps_legacy_lib/Legacy Physical Signals/Nonlinear Operators/PS Fix
+fl_ps_legacy_lib/Legacy Physical Signals/Nonlinear Operators/PS Floor
+fl_ps_legacy_lib/Legacy Physical Signals/Nonlinear Operators/PS Max
+fl_ps_legacy_lib/Legacy Physical Signals/Nonlinear Operators/PS Min
+fl_ps_legacy_lib/Legacy Physical Signals/Nonlinear Operators/PS Round
+fl_ps_legacy_lib/Legacy Physical Signals/Nonlinear Operators/PS Saturation
+fl_ps_legacy_lib/Legacy Physical Signals/Nonlinear Operators/PS Sign
+fl_ps_legacy_lib/Legacy Physical Signals/Nonlinear Operators/PS Switch
+fl_ps_legacy_lib/Legacy Physical Signals/Periodic Operators
+fl_ps_legacy_lib/Legacy Physical Signals/Periodic Operators/PS Constant Offset Estimator
+fl_ps_legacy_lib/Legacy Physical Signals/Periodic Operators/PS Harmonic Estimator (Amplitude, Phase)
+fl_ps_legacy_lib/Legacy Physical Signals/Periodic Operators/PS Harmonic Estimator (Real, Imaginary)
+fl_ps_legacy_lib/Legacy Physical Signals/Periodic Operators/PS RMS Estimator
+fl_ps_legacy_lib/Legacy Physical Signals/Sinks
+fl_ps_legacy_lib/Legacy Physical Signals/Sinks/PS Terminator
+fl_ps_legacy_lib/Legacy Physical Signals/Sources
+fl_ps_legacy_lib/Legacy Physical Signals/Sources/Counter
+fl_ps_legacy_lib/Legacy Physical Signals/Sources/PS Constant
+fl_ps_legacy_lib/Legacy Physical Signals/Sources/Random Number
+fl_ps_legacy_lib/Legacy Physical Signals/Sources/Repeating Sequence
+fl_ps_legacy_lib/Legacy Physical Signals/Sources/Uniform Random Number
+
+--- simscape (3 bloques) ---
+simscape/Foundation Library
+simscape/Multibody
+simscape/Utilities
+
+--- ssc_HtoIL_orifice (24 bloques) ---
+ssc_HtoIL_orifice/Constant Area Hydraulic Orifice
+ssc_HtoIL_orifice/Custom Hydraulic Fluid
+ssc_HtoIL_orifice/Hydraulic Pressure Source
+ssc_HtoIL_orifice/Hydraulic Reference
+ssc_HtoIL_orifice/Ramp
+ssc_HtoIL_orifice/Scope1
+ssc_HtoIL_orifice/Sensor1
+ssc_HtoIL_orifice/Sensor1/Avoid Divide By 0
+ssc_HtoIL_orifice/Sensor1/Hydraulic Flow Rate Sensor
+ssc_HtoIL_orifice/Sensor1/Hydraulic Pressure Sensor
+ssc_HtoIL_orifice/Sensor1/Hydraulic Reference
+ssc_HtoIL_orifice/Sensor1/PS Divide
+ssc_HtoIL_orifice/Sensor1/PS-Simulink Converter
+ssc_HtoIL_orifice/Sensor1/PS-Simulink Converter1
+ssc_HtoIL_orifice/Sensor1/PS-Simulink Converter2
+ssc_HtoIL_orifice/Sensor1/PS-Simulink Converter3
+ssc_HtoIL_orifice/Sensor1/A
+ssc_HtoIL_orifice/Sensor1/B
+ssc_HtoIL_orifice/Sensor1/M
+ssc_HtoIL_orifice/Sensor1/Q
+ssc_HtoIL_orifice/Sensor1/rho
+ssc_HtoIL_orifice/Sensor1/p
+ssc_HtoIL_orifice/Simulink-PS Converter
+ssc_HtoIL_orifice/Solver Configuration
+
+--- ssc_gas_tutorial_step1 (8 bloques) ---
+ssc_gas_tutorial_step1/Downstream Reservoir
+ssc_gas_tutorial_step1/Gas Properties (G)
+ssc_gas_tutorial_step1/Local Restriction (G)
+ssc_gas_tutorial_step1/Mass & Energy Flow Rate Sensor (G)
+ssc_gas_tutorial_step1/Mass Flow Rate
+ssc_gas_tutorial_step1/PS-Simulink Converter
+ssc_gas_tutorial_step1/Solver Configuration
+ssc_gas_tutorial_step1/Upstream Reservoir
+
+--- ssc_gas_tutorial_step2 (15 bloques) ---
+ssc_gas_tutorial_step2/Absolute Reference (G)
+ssc_gas_tutorial_step2/Downstream Reservoir
+ssc_gas_tutorial_step2/Gas Properties (G)
+ssc_gas_tutorial_step2/Local Restriction (G)
+ssc_gas_tutorial_step2/Mass & Energy Flow Rate Sensor (G)
+ssc_gas_tutorial_step2/Mass Flow Rate
+ssc_gas_tutorial_step2/Mass Flow Rate Source (G)
+ssc_gas_tutorial_step2/PS-Simulink Converter
+ssc_gas_tutorial_step2/PS-Simulink Converter1
+ssc_gas_tutorial_step2/PS-Simulink Converter2
+ssc_gas_tutorial_step2/Pressure
+ssc_gas_tutorial_step2/Pressure & Temperature Sensor (G)
+ssc_gas_tutorial_step2/Solver Configuration
+ssc_gas_tutorial_step2/Temperature
+ssc_gas_tutorial_step2/Upstream Reservoir
+
+--- ssc_gas_tutorial_step3 (16 bloques) ---
+ssc_gas_tutorial_step3/Absolute Reference (G)
+ssc_gas_tutorial_step3/Controlled Mass Flow Rate Source (G)
+ssc_gas_tutorial_step3/Downstream Reservoir
+ssc_gas_tutorial_step3/Gas Properties (G)
+ssc_gas_tutorial_step3/Local Restriction (G)
+ssc_gas_tutorial_step3/Mass & Energy Flow Rate Sensor (G)
+ssc_gas_tutorial_step3/Mass Flow Rate
+ssc_gas_tutorial_step3/PS Sine Wave
+ssc_gas_tutorial_step3/PS-Simulink Converter
+ssc_gas_tutorial_step3/PS-Simulink Converter1
+ssc_gas_tutorial_step3/PS-Simulink Converter2
+ssc_gas_tutorial_step3/Pressure
+ssc_gas_tutorial_step3/Pressure & Temperature Sensor (G)
+ssc_gas_tutorial_step3/Solver Configuration
+ssc_gas_tutorial_step3/Temperature
+ssc_gas_tutorial_step3/Upstream Reservoir
+
+--- ssc_gas_tutorial_step4 (9 bloques) ---
+ssc_gas_tutorial_step4/Controlled Mass Flow Rate Source (G)
+ssc_gas_tutorial_step4/Gas Properties (G)
+ssc_gas_tutorial_step4/Local Restriction (G)
+ssc_gas_tutorial_step4/PS Constant
+ssc_gas_tutorial_step4/Perfect Insulator
+ssc_gas_tutorial_step4/Perfect Insulator1
+ssc_gas_tutorial_step4/Return Pipe
+ssc_gas_tutorial_step4/Solver Configuration
+ssc_gas_tutorial_step4/Supply Pipe
+
+--- ssc_gas_tutorial_step5 (8 bloques) ---
+ssc_gas_tutorial_step5/Controlled Mass Flow Rate Source (G)
+ssc_gas_tutorial_step5/Gas Properties (G)
+ssc_gas_tutorial_step5/Local Restriction (G)
+ssc_gas_tutorial_step5/PS Constant
+ssc_gas_tutorial_step5/Return Pipe
+ssc_gas_tutorial_step5/Solver Configuration
+ssc_gas_tutorial_step5/Supply Pipe
+ssc_gas_tutorial_step5/Temperature Source
+
+--- ssc_pneumatic_rts_reference (69 bloques) ---
+ssc_pneumatic_rts_reference/ Pneumatic Atmospheric   Reference
+ssc_pneumatic_rts_reference/Directional 5-way valve
+ssc_pneumatic_rts_reference/Directional 5-way valve/Area A-R
+ssc_pneumatic_rts_reference/Directional 5-way valve/Area B-S
+ssc_pneumatic_rts_reference/Directional 5-way valve/Area P-A
+ssc_pneumatic_rts_reference/Directional 5-way valve/Area P-B
+ssc_pneumatic_rts_reference/Directional 5-way valve/PS Gain
+ssc_pneumatic_rts_reference/Directional 5-way valve/Variable Area Orifice 1
+ssc_pneumatic_rts_reference/Directional 5-way valve/Variable Area Orifice 2
+ssc_pneumatic_rts_reference/Directional 5-way valve/Variable Area Orifice 3
+ssc_pneumatic_rts_reference/Directional 5-way valve/Variable Area Orifice 4
+ssc_pneumatic_rts_reference/Directional 5-way valve/d(mm)
+ssc_pneumatic_rts_reference/Directional 5-way valve/R
+ssc_pneumatic_rts_reference/Directional 5-way valve/P
+ssc_pneumatic_rts_reference/Directional 5-way valve/S
+ssc_pneumatic_rts_reference/Directional 5-way valve/A
+ssc_pneumatic_rts_reference/Directional 5-way valve/B
+ssc_pneumatic_rts_reference/Friction Load
+ssc_pneumatic_rts_reference/Measure flow
+ssc_pneumatic_rts_reference/Measure flow/60
+ssc_pneumatic_rts_reference/Measure flow/PS-Simulink Converter1
+ssc_pneumatic_rts_reference/Measure flow/PS-Simulink Converter2
+ssc_pneumatic_rts_reference/Measure flow/PS-Simulink Converter3
+ssc_pneumatic_rts_reference/Measure flow/Pneumatic Absolute Reference
+ssc_pneumatic_rts_reference/Measure flow/Pneumatic Mass & Heat Flow Sensor
+ssc_pneumatic_rts_reference/Measure flow/Pneumatic Pressure & Temperature Sensor
+ssc_pneumatic_rts_reference/Measure flow/Product
+ssc_pneumatic_rts_reference/Measure flow/Product1
+ssc_pneumatic_rts_reference/Measure flow/RT//p
+ssc_pneumatic_rts_reference/Measure flow/A
+ssc_pneumatic_rts_reference/Measure flow/B
+ssc_pneumatic_rts_reference/Measure flow/Flow
+ssc_pneumatic_rts_reference/Measurements
+ssc_pneumatic_rts_reference/Measurements/Ideal Rotational Motion Sensor
+ssc_pneumatic_rts_reference/Measurements/Mechanical Rotational Reference2
+ssc_pneumatic_rts_reference/Measurements/Mult
+ssc_pneumatic_rts_reference/Measurements/PS-Simulink Converter
+ssc_pneumatic_rts_reference/Measurements/PS-Simulink Converter1
+ssc_pneumatic_rts_reference/Measurements/PS-Simulink Converter2
+ssc_pneumatic_rts_reference/Measurements/Torque Sensor
+ssc_pneumatic_rts_reference/Measurements/W2kW
+ssc_pneumatic_rts_reference/Measurements/R
+ssc_pneumatic_rts_reference/Measurements/C
+ssc_pneumatic_rts_reference/Measurements/kW
+ssc_pneumatic_rts_reference/Measurements/RPM
+ssc_pneumatic_rts_reference/Mechanical Rotational Reference
+ssc_pneumatic_rts_reference/Motor & shaft inertia
+ssc_pneumatic_rts_reference/Pipe 1
+ssc_pneumatic_rts_reference/Pipe 1/Adiabatic Cup
+ssc_pneumatic_rts_reference/Pipe 1/Constant Chamber
+ssc_pneumatic_rts_reference/Pipe 1/A
+ssc_pneumatic_rts_reference/Pipe 1/B
+ssc_pneumatic_rts_reference/Pipe 2
+ssc_pneumatic_rts_reference/Pipe 2/Adiabatic Cup
+ssc_pneumatic_rts_reference/Pipe 2/Constant Chamber
+ssc_pneumatic_rts_reference/Pipe 2/A
+ssc_pneumatic_rts_reference/Pipe 2/B
+ssc_pneumatic_rts_reference/Pneumatic Atmospheric Reference
+ssc_pneumatic_rts_reference/Pneumatic Motor
+ssc_pneumatic_rts_reference/Power (kW)
+ssc_pneumatic_rts_reference/Pressure Source
+ssc_pneumatic_rts_reference/RPM
+ssc_pneumatic_rts_reference/Simulink-PS Converter
+ssc_pneumatic_rts_reference/Solver Configuration
+ssc_pneumatic_rts_reference/Spool position
+ssc_pneumatic_rts_reference/Spool position/Repeating Sequence
+ssc_pneumatic_rts_reference/Spool position/Spool
+ssc_pneumatic_rts_reference/Volumetric flow (m^3//min)
+ssc_pneumatic_rts_reference/out
+
+--- ssc_pneumatic_rts_stiffness_redux (69 bloques) ---
+ssc_pneumatic_rts_stiffness_redux/ Pneumatic Atmospheric   Reference
+ssc_pneumatic_rts_stiffness_redux/Directional 5-way valve
+ssc_pneumatic_rts_stiffness_redux/Directional 5-way valve/Area A-R
+ssc_pneumatic_rts_stiffness_redux/Directional 5-way valve/Area B-S
+ssc_pneumatic_rts_stiffness_redux/Directional 5-way valve/Area P-A
+ssc_pneumatic_rts_stiffness_redux/Directional 5-way valve/Area P-B
+ssc_pneumatic_rts_stiffness_redux/Directional 5-way valve/PS Gain
+ssc_pneumatic_rts_stiffness_redux/Directional 5-way valve/Variable Area Orifice 1
+ssc_pneumatic_rts_stiffness_redux/Directional 5-way valve/Variable Area Orifice 2
+ssc_pneumatic_rts_stiffness_redux/Directional 5-way valve/Variable Area Orifice 3
+ssc_pneumatic_rts_stiffness_redux/Directional 5-way valve/Variable Area Orifice 4
+ssc_pneumatic_rts_stiffness_redux/Directional 5-way valve/d(mm)
+ssc_pneumatic_rts_stiffness_redux/Directional 5-way valve/R
+ssc_pneumatic_rts_stiffness_redux/Directional 5-way valve/P
+ssc_pneumatic_rts_stiffness_redux/Directional 5-way valve/S
+ssc_pneumatic_rts_stiffness_redux/Directional 5-way valve/A
+ssc_pneumatic_rts_stiffness_redux/Directional 5-way valve/B
+ssc_pneumatic_rts_stiffness_redux/Friction Load
+ssc_pneumatic_rts_stiffness_redux/Measure flow
+ssc_pneumatic_rts_stiffness_redux/Measure flow/60
+ssc_pneumatic_rts_stiffness_redux/Measure flow/PS-Simulink Converter1
+ssc_pneumatic_rts_stiffness_redux/Measure flow/PS-Simulink Converter2
+ssc_pneumatic_rts_stiffness_redux/Measure flow/PS-Simulink Converter3
+ssc_pneumatic_rts_stiffness_redux/Measure flow/Pneumatic Absolute Reference
+ssc_pneumatic_rts_stiffness_redux/Measure flow/Pneumatic Mass & Heat Flow Sensor
+ssc_pneumatic_rts_stiffness_redux/Measure flow/Pneumatic Pressure & Temperature Sensor
+ssc_pneumatic_rts_stiffness_redux/Measure flow/Product
+ssc_pneumatic_rts_stiffness_redux/Measure flow/Product1
+ssc_pneumatic_rts_stiffness_redux/Measure flow/RT//p
+ssc_pneumatic_rts_stiffness_redux/Measure flow/A
+ssc_pneumatic_rts_stiffness_redux/Measure flow/B
+ssc_pneumatic_rts_stiffness_redux/Measure flow/Flow
+ssc_pneumatic_rts_stiffness_redux/Measurements
+ssc_pneumatic_rts_stiffness_redux/Measurements/Ideal Rotational Motion Sensor
+ssc_pneumatic_rts_stiffness_redux/Measurements/Mechanical Rotational Reference2
+ssc_pneumatic_rts_stiffness_redux/Measurements/Mult
+ssc_pneumatic_rts_stiffness_redux/Measurements/PS-Simulink Converter
+ssc_pneumatic_rts_stiffness_redux/Measurements/PS-Simulink Converter1
+ssc_pneumatic_rts_stiffness_redux/Measurements/PS-Simulink Converter2
+ssc_pneumatic_rts_stiffness_redux/Measurements/Torque Sensor
+ssc_pneumatic_rts_stiffness_redux/Measurements/W2kW
+ssc_pneumatic_rts_stiffness_redux/Measurements/R
+ssc_pneumatic_rts_stiffness_redux/Measurements/C
+ssc_pneumatic_rts_stiffness_redux/Measurements/kW
+ssc_pneumatic_rts_stiffness_redux/Measurements/RPM
+ssc_pneumatic_rts_stiffness_redux/Mechanical Rotational Reference
+ssc_pneumatic_rts_stiffness_redux/Motor & shaft inertia
+ssc_pneumatic_rts_stiffness_redux/Pipe 1
+ssc_pneumatic_rts_stiffness_redux/Pipe 1/Adiabatic Cup
+ssc_pneumatic_rts_stiffness_redux/Pipe 1/Constant Chamber
+ssc_pneumatic_rts_stiffness_redux/Pipe 1/A
+ssc_pneumatic_rts_stiffness_redux/Pipe 1/B
+ssc_pneumatic_rts_stiffness_redux/Pipe 2
+ssc_pneumatic_rts_stiffness_redux/Pipe 2/Adiabatic Cup
+ssc_pneumatic_rts_stiffness_redux/Pipe 2/Constant Chamber
+ssc_pneumatic_rts_stiffness_redux/Pipe 2/A
+ssc_pneumatic_rts_stiffness_redux/Pipe 2/B
+ssc_pneumatic_rts_stiffness_redux/Pneumatic Atmospheric Reference
+ssc_pneumatic_rts_stiffness_redux/Pneumatic Motor
+ssc_pneumatic_rts_stiffness_redux/Power (kW)
+ssc_pneumatic_rts_stiffness_redux/Pressure Source
+ssc_pneumatic_rts_stiffness_redux/RPM
+ssc_pneumatic_rts_stiffness_redux/Simulink-PS Converter
+ssc_pneumatic_rts_stiffness_redux/Solver Configuration
+ssc_pneumatic_rts_stiffness_redux/Spool position
+ssc_pneumatic_rts_stiffness_redux/Spool position/Repeating Sequence
+ssc_pneumatic_rts_stiffness_redux/Spool position/Spool
+ssc_pneumatic_rts_stiffness_redux/Volumetric flow (m^3//min)
+ssc_pneumatic_rts_stiffness_redux/out
+
+--- ssc_pneumatic_rts_zc_redux (69 bloques) ---
+ssc_pneumatic_rts_zc_redux/ Pneumatic Atmospheric   Reference
+ssc_pneumatic_rts_zc_redux/Directional 5-way valve
+ssc_pneumatic_rts_zc_redux/Directional 5-way valve/Area A-R
+ssc_pneumatic_rts_zc_redux/Directional 5-way valve/Area B-S
+ssc_pneumatic_rts_zc_redux/Directional 5-way valve/Area P-A
+ssc_pneumatic_rts_zc_redux/Directional 5-way valve/Area P-B
+ssc_pneumatic_rts_zc_redux/Directional 5-way valve/PS Gain
+ssc_pneumatic_rts_zc_redux/Directional 5-way valve/Variable Area Orifice 1
+ssc_pneumatic_rts_zc_redux/Directional 5-way valve/Variable Area Orifice 2
+ssc_pneumatic_rts_zc_redux/Directional 5-way valve/Variable Area Orifice 3
+ssc_pneumatic_rts_zc_redux/Directional 5-way valve/Variable Area Orifice 4
+ssc_pneumatic_rts_zc_redux/Directional 5-way valve/d(mm)
+ssc_pneumatic_rts_zc_redux/Directional 5-way valve/R
+ssc_pneumatic_rts_zc_redux/Directional 5-way valve/P
+ssc_pneumatic_rts_zc_redux/Directional 5-way valve/S
+ssc_pneumatic_rts_zc_redux/Directional 5-way valve/A
+ssc_pneumatic_rts_zc_redux/Directional 5-way valve/B
+ssc_pneumatic_rts_zc_redux/Friction Load
+ssc_pneumatic_rts_zc_redux/Measure flow
+ssc_pneumatic_rts_zc_redux/Measure flow/60
+ssc_pneumatic_rts_zc_redux/Measure flow/PS-Simulink Converter1
+ssc_pneumatic_rts_zc_redux/Measure flow/PS-Simulink Converter2
+ssc_pneumatic_rts_zc_redux/Measure flow/PS-Simulink Converter3
+ssc_pneumatic_rts_zc_redux/Measure flow/Pneumatic Absolute Reference
+ssc_pneumatic_rts_zc_redux/Measure flow/Pneumatic Mass & Heat Flow Sensor
+ssc_pneumatic_rts_zc_redux/Measure flow/Pneumatic Pressure & Temperature Sensor
+ssc_pneumatic_rts_zc_redux/Measure flow/Product
+ssc_pneumatic_rts_zc_redux/Measure flow/Product1
+ssc_pneumatic_rts_zc_redux/Measure flow/RT//p
+ssc_pneumatic_rts_zc_redux/Measure flow/A
+ssc_pneumatic_rts_zc_redux/Measure flow/B
+ssc_pneumatic_rts_zc_redux/Measure flow/Flow
+ssc_pneumatic_rts_zc_redux/Measurements
+ssc_pneumatic_rts_zc_redux/Measurements/Ideal Rotational Motion Sensor
+ssc_pneumatic_rts_zc_redux/Measurements/Mechanical Rotational Reference2
+ssc_pneumatic_rts_zc_redux/Measurements/Mult
+ssc_pneumatic_rts_zc_redux/Measurements/PS-Simulink Converter
+ssc_pneumatic_rts_zc_redux/Measurements/PS-Simulink Converter1
+ssc_pneumatic_rts_zc_redux/Measurements/PS-Simulink Converter2
+ssc_pneumatic_rts_zc_redux/Measurements/Torque Sensor
+ssc_pneumatic_rts_zc_redux/Measurements/W2kW
+ssc_pneumatic_rts_zc_redux/Measurements/R
+ssc_pneumatic_rts_zc_redux/Measurements/C
+ssc_pneumatic_rts_zc_redux/Measurements/kW
+ssc_pneumatic_rts_zc_redux/Measurements/RPM
+ssc_pneumatic_rts_zc_redux/Mechanical Rotational Reference
+ssc_pneumatic_rts_zc_redux/Motor & shaft inertia
+ssc_pneumatic_rts_zc_redux/Pipe 1
+ssc_pneumatic_rts_zc_redux/Pipe 1/Adiabatic Cup
+ssc_pneumatic_rts_zc_redux/Pipe 1/Constant Chamber
+ssc_pneumatic_rts_zc_redux/Pipe 1/A
+ssc_pneumatic_rts_zc_redux/Pipe 1/B
+ssc_pneumatic_rts_zc_redux/Pipe 2
+ssc_pneumatic_rts_zc_redux/Pipe 2/Adiabatic Cup
+ssc_pneumatic_rts_zc_redux/Pipe 2/Constant Chamber
+ssc_pneumatic_rts_zc_redux/Pipe 2/A
+ssc_pneumatic_rts_zc_redux/Pipe 2/B
+ssc_pneumatic_rts_zc_redux/Pneumatic Atmospheric Reference
+ssc_pneumatic_rts_zc_redux/Pneumatic Motor
+ssc_pneumatic_rts_zc_redux/Power (kW)
+ssc_pneumatic_rts_zc_redux/Pressure Source
+ssc_pneumatic_rts_zc_redux/RPM
+ssc_pneumatic_rts_zc_redux/Simulink-PS Converter
+ssc_pneumatic_rts_zc_redux/Solver Configuration
+ssc_pneumatic_rts_zc_redux/Spool position
+ssc_pneumatic_rts_zc_redux/Spool position/Repeating Sequence
+ssc_pneumatic_rts_zc_redux/Spool position/Spool
+ssc_pneumatic_rts_zc_redux/Volumetric flow (m^3//min)
+ssc_pneumatic_rts_zc_redux/out
+
+--- ssc_resistive_ac_circuit (8 bloques) ---
+ssc_resistive_ac_circuit/AC Voltage Source
+ssc_resistive_ac_circuit/Current Sensor
+ssc_resistive_ac_circuit/Development  Scope
+ssc_resistive_ac_circuit/Electrical Reference
+ssc_resistive_ac_circuit/Electrical Reference1
+ssc_resistive_ac_circuit/PS-Simulink Converter
+ssc_resistive_ac_circuit/Resistor
+ssc_resistive_ac_circuit/Solver Configuration
+
+--- BatteryPack_lib (2 bloques) ---
+BatteryPack_lib/Battery Pack
+BatteryPack_lib/battery_cell
+
+--- BraytonCycle_lib (2 bloques) ---
+BraytonCycle_lib/Compressor
+BraytonCycle_lib/Turbine
+
+--- Capacitors_lib (3 bloques) ---
+Capacitors_lib/Ideal Capacitor
+Capacitors_lib/Ideal Ultracapacitor
+Capacitors_lib/Lossy Ultracapacitor
+
+--- ElectroChem_lib (9 bloques) ---
+ElectroChem_lib/Electrochemical Elements
+ElectroChem_lib/Electrochemical Elements/Chemical Energy Store
+ElectroChem_lib/Electrochemical Elements/Chemical Reference
+ElectroChem_lib/Electrochemical Elements/Chemical to Electrical Converter
+ElectroChem_lib/Electrochemical Sensors
+ElectroChem_lib/Electrochemical Sensors/Chemical Potential Sensor
+ElectroChem_lib/Electrochemical Sensors/Molar Flow Sensor
+ElectroChem_lib/Electrochemical Sources
+ElectroChem_lib/Electrochemical Sources/Constant Potential Source
+
+--- EngineCoolingComponents_lib (4 bloques) ---
+EngineCoolingComponents_lib/Fixed-Displacement Pump
+EngineCoolingComponents_lib/Fluid Jacket
+EngineCoolingComponents_lib/Radiator
+EngineCoolingComponents_lib/Thermostat
+
+--- HVAC_lib (4 bloques) ---
+HVAC_lib/Basic Compressor
+HVAC_lib/Basic Evaporator
+HVAC_lib/Basic Heat Exchanger
+HVAC_lib/Basic Turbine
+
+--- IdealHardStop_lib (2 bloques) ---
+IdealHardStop_lib/Ideal friction
+IdealHardStop_lib/Ideal hard stop
+
+--- LeadAcidBattery_lib (6 bloques) ---
+LeadAcidBattery_lib/Main Branch Capacitance, C1
+LeadAcidBattery_lib/Main Branch Resistance, R1
+LeadAcidBattery_lib/Main Branch Resistance, R2
+LeadAcidBattery_lib/Main Branch Voltage Source, Em
+LeadAcidBattery_lib/Parasitic Branch Resistance, Rp
+LeadAcidBattery_lib/Terminal Resistance, R0
+
+--- LiBatteryElements_lib (6 bloques) ---
+LiBatteryElements_lib/C_table
+LiBatteryElements_lib/C_table_1Temp
+LiBatteryElements_lib/Em_table
+LiBatteryElements_lib/Em_table_1Temp
+LiBatteryElements_lib/R_table
+LiBatteryElements_lib/R_table_1Temp
+
+--- Pendulum_lib (2 bloques) ---
+Pendulum_lib/Planar Pendulum (Cartesian)
+Pendulum_lib/Planar Pendulum (Polar)
+
+--- Pneumatic_lib (24 bloques) ---
+Pneumatic_lib/Pneumatic Elements
+Pneumatic_lib/Pneumatic Elements/Adiabatic Cup
+Pneumatic_lib/Pneumatic Elements/Constant Area Pneumatic Orifice
+Pneumatic_lib/Pneumatic Elements/Constant Area Pneumatic Orifice (ISO 6358)
+Pneumatic_lib/Pneumatic Elements/Constant Volume Pneumatic Chamber
+Pneumatic_lib/Pneumatic Elements/Infinite Pneumatic Resistance
+Pneumatic_lib/Pneumatic Elements/Pneumatic Atmospheric Reference
+Pneumatic_lib/Pneumatic Elements/Pneumatic Absolute Reference
+Pneumatic_lib/Pneumatic Elements/Pneumatic Piston Chamber
+Pneumatic_lib/Pneumatic Elements/Pneumatic Resistive Tube
+Pneumatic_lib/Pneumatic Elements/Rotary Pneumatic Piston Chamber
+Pneumatic_lib/Pneumatic Elements/Rotational Pneumatic- Mechanical Converter
+Pneumatic_lib/Pneumatic Elements/Variable Area Pneumatic Orifice
+Pneumatic_lib/Pneumatic Sensors
+Pneumatic_lib/Pneumatic Sensors/Pneumatic Mass & Heat Flow Sensor
+Pneumatic_lib/Pneumatic Sensors/Pneumatic Pressure & Temperature Sensor
+Pneumatic_lib/Pneumatic Sensors/Pressure Transducer
+Pneumatic_lib/Pneumatic Sources
+Pneumatic_lib/Pneumatic Sources/Controlled Pneumatic Flow Rate Source
+Pneumatic_lib/Pneumatic Sources/Controlled Pneumatic Pressure Source
+Pneumatic_lib/Pneumatic Sources/Pneumatic Flow Rate Source
+Pneumatic_lib/Pneumatic Sources/Pneumatic Pressure Source
+Pneumatic_lib/Pneumatic Utilities
+Pneumatic_lib/Pneumatic Utilities/Gas Properties
+
+--- RankineCycle_lib (2 bloques) ---
+RankineCycle_lib/Saturated Fluid Chamber
+RankineCycle_lib/Turbine
+
+--- SimscapeFunction_lib (6 bloques) ---
+SimscapeFunction_lib/Nouse
+SimscapeFunction_lib/Nouse/NoFunction1
+SimscapeFunction_lib/Nouse/NoFunction2
+SimscapeFunction_lib/Use
+SimscapeFunction_lib/Use/UseFunction1
+SimscapeFunction_lib/Use/UseFunction2
+
+--- sm_lib (88 bloques) ---
+sm_lib/Belts and Cables
+sm_lib/Belts and Cables/Belt-Cable Properties
+sm_lib/Belts and Cables/Belt-Cable End
+sm_lib/Belts and Cables/Belt-Cable Spool
+sm_lib/Belts and Cables/Pulley
+sm_lib/Body Elements
+sm_lib/Body Elements/Brick Solid
+sm_lib/Body Elements/Cylindrical Solid
+sm_lib/Body Elements/Ellipsoidal Solid
+sm_lib/Body Elements/Extruded Solid
+sm_lib/Body Elements/File Solid
+sm_lib/Body Elements/Flexible Bodies
+sm_lib/Body Elements/Flexible Bodies/Beams
+sm_lib/Body Elements/Flexible Bodies/Beams/Flexible Angle Beam
+sm_lib/Body Elements/Flexible Bodies/Beams/Flexible Channel Beam
+sm_lib/Body Elements/Flexible Bodies/Beams/Flexible Cylindrical Beam
+sm_lib/Body Elements/Flexible Bodies/Beams/Flexible I Beam
+sm_lib/Body Elements/Flexible Bodies/Beams/Flexible Rectangular Beam
+sm_lib/Body Elements/Flexible Bodies/Beams/Flexible T Beam
+sm_lib/Body Elements/Flexible Bodies/Beams/General Flexible Beam
+sm_lib/Body Elements/Flexible Bodies/Plates and Shells
+sm_lib/Body Elements/Flexible Bodies/Plates and Shells/General Flexible Plate
+sm_lib/Body Elements/Flexible Bodies/Reduced Order Flexible Solid
+sm_lib/Body Elements/Graphic
+sm_lib/Body Elements/Inertia
+sm_lib/Body Elements/Inertia Sensor
+sm_lib/Body Elements/Revolved Solid
+sm_lib/Body Elements/Spherical Solid
+sm_lib/Body Elements/Variable Mass
+sm_lib/Body Elements/Variable Mass/General Variable Mass
+sm_lib/Body Elements/Variable Mass/Variable Brick Solid
+sm_lib/Body Elements/Variable Mass/Variable Cylindrical Solid
+sm_lib/Body Elements/Variable Mass/Variable Spherical Solid
+sm_lib/Constraints
+sm_lib/Constraints/Angle Constraint
+sm_lib/Constraints/Distance Constraint
+sm_lib/Constraints/Point on Curve Constraint
+sm_lib/Constraints/Point on Surface Constraint
+sm_lib/Curves and Surfaces
+sm_lib/Curves and Surfaces/Disk
+sm_lib/Curves and Surfaces/Grid Surface
+sm_lib/Curves and Surfaces/Infinite Plane
+sm_lib/Curves and Surfaces/Line Segment
+sm_lib/Curves and Surfaces/Point
+sm_lib/Curves and Surfaces/Point Cloud
+sm_lib/Curves and Surfaces/Spline
+sm_lib/Forces and Torques
+sm_lib/Forces and Torques/Custom Tire Force and Torque
+sm_lib/Forces and Torques/External Force and Torque
+sm_lib/Forces and Torques/Gravitational Field
+sm_lib/Forces and Torques/Internal Force
+sm_lib/Forces and Torques/Inverse Square Law Force
+sm_lib/Forces and Torques/Magic Formula Tire Force and Torque
+sm_lib/Forces and Torques/Planar Contact Force
+sm_lib/Forces and Torques/Spatial Contact Force
+sm_lib/Forces and Torques/Spring and Damper Force
+sm_lib/Frames and Transforms
+sm_lib/Frames and Transforms/Reference Frame
+sm_lib/Frames and Transforms/Rigid Transform
+sm_lib/Frames and Transforms/Transform Sensor
+sm_lib/Frames and Transforms/World Frame
+sm_lib/Gears and Couplings
+sm_lib/Gears and Couplings/Gears
+sm_lib/Gears and Couplings/Gears/Bevel Gear Constraint
+sm_lib/Gears and Couplings/Gears/Common Gear Constraint
+sm_lib/Gears and Couplings/Gears/Rack and Pinion Constraint
+sm_lib/Gears and Couplings/Gears/Worm and Gear Constraint
+sm_lib/Joints
+sm_lib/Joints/6-DOF Joint
+sm_lib/Joints/Bearing Joint
+sm_lib/Joints/Bushing Joint
+sm_lib/Joints/Cartesian Joint
+sm_lib/Joints/Constant Velocity Joint
+sm_lib/Joints/Cylindrical Joint
+sm_lib/Joints/Gimbal Joint
+sm_lib/Joints/Lead Screw Joint
+sm_lib/Joints/Pin Slot Joint
+sm_lib/Joints/Planar Joint
+sm_lib/Joints/Prismatic Joint
+sm_lib/Joints/Rectangular Joint
+sm_lib/Joints/Revolute Joint
+sm_lib/Joints/Spherical Joint
+sm_lib/Joints/Telescoping Joint
+sm_lib/Joints/Universal Joint
+sm_lib/Joints/Weld Joint
+sm_lib/Simscape Mechanical Interfaces
+sm_lib/Utilities
+sm_lib/Utilities/Mechanism Configuration

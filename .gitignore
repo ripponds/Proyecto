@@ -1,0 +1,14 @@
+# MATLAB — cachés de compilación
+slprj/
+**/slprj/
+*.slxc
+*.autosave
+*.asv
+*.mex*
+codegen/
+
+# Videos grandes
+*.avi
+
+# Configuración local Claude
+.claude/

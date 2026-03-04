@@ -1,0 +1,12 @@
+﻿# MATLAB & Simulink
+slprj/
+*.slxc
+*.asv
+*.m~
+
+# IA & Herramientas locales
+.claude/
+
+# Sistema
+Thumbs.db
+desktop.ini

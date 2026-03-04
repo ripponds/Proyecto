@@ -1,0 +1,82 @@
+=========================================================
+  MODELO: TWIP_NL
+  Exportado: 26-Feb-2026 00:30:44
+  Directorio: C:\Users\crist\OneDrive\Escritorio\Proyecto\Simulink
+=========================================================
+
+--- SOLVER ---
+StopTime : 10
+Solver   : ode45
+RelTol   : 1e-4
+MaxStep  : 0.02
+
+--- BLOQUES ---
+[Bache]  tipo=SubSystem  ref=  pos=[60 460 180 500]  ori=right  mirror=off
+[Controller]  tipo=SubSystem  ref=  pos=[260 302 400 358]  ori=right  mirror=off
+[D1]  tipo=Constant  ref=  pos=[-70 205 10 235]  ori=right  mirror=off
+    Value=d1_ext
+[D2]  tipo=Constant  ref=  pos=[-70 255 10 285]  ori=right  mirror=off
+    Value=d2_ext
+[Demux_u]  tipo=Demux  ref=  pos=[1180 297 1185 348]  ori=right  mirror=off
+    Outputs=2
+[Demux_x]  tipo=Demux  ref=  pos=[560 180 565 395]  ori=right  mirror=off
+    Outputs=6
+[Exportar_Claude]  tipo=SubSystem  ref=  pos=[755 460 875 500]  ori=right  mirror=off
+[Integrator]  tipo=Integrator  ref=  pos=[430 200 470 240]  ori=right  mirror=off
+    IC=X0
+[Kc]  tipo=Constant  ref=  pos=[435 330 520 360]  ori=right  mirror=off
+    Value=K_lqr
+[Mux_d]  tipo=Mux  ref=  pos=[80 205 85 280]  ori=right  mirror=off
+    Inputs=2
+[P_bache]  tipo=Constant  ref=  pos=[-70 315 30 345]  ori=right  mirror=off
+    Value=p_bache
+[P_phys]  tipo=Constant  ref=  pos=[-70 145 30 175]  ori=right  mirror=off
+    Value=p_phys
+[Plant]  tipo=SubSystem  ref=  pos=[230 182 370 258]  ori=right  mirror=off
+[Scope_ctrl]  tipo=Scope  ref=  pos=[1290 295 1340 350]  ori=right  mirror=off
+    NumInputPorts=2
+[Scope_tilt]  tipo=Scope  ref=  pos=[710 240 760 295]  ori=right  mirror=off
+    NumInputPorts=2
+[Sum_pitch]  tipo=Sum  ref=  pos=[40 205 70 235]  ori=right  mirror=off
+[Term_psi]  tipo=Terminator  ref=  pos=[590 260 610 280]  ori=right  mirror=off
+[Term_psi_dot]  tipo=Terminator  ref=  pos=[590 365 610 385]  ori=right  mirror=off
+
+--- CONEXIONES ---
+Demux_u/2  →  Scope_ctrl/2   ["u2 [Nm]"]
+Demux_u/1  →  Scope_ctrl/1   ["u1 [Nm]"]
+Demux_x/5  →  Scope_tilt/2   ["theta_dot [rad/s]"]
+Demux_x/2  →  Scope_tilt/1   ["theta [rad]"]
+Demux_x/6  →  Term_psi_dot/1
+Demux_x/3  →  Term_psi/1
+P_bache/1  →  Bache/3
+Demux_x/4  →  Bache/2
+Demux_x/1  →  Bache/1
+Mux_d/1  →  Plant/3
+D2/1  →  Mux_d/2
+Sum_pitch/1  →  Mux_d/1
+D1/1  →  Sum_pitch/2
+Bache/1  →  Sum_pitch/1
+Controller/1  →  Plant/2
+Kc/1  →  Controller/2
+P_phys/1  →  Plant/4
+Integrator/1  →  Controller/1
+Integrator/1  →  Demux_x/1
+Integrator/1  →  Plant/1
+Plant/1  →  Integrator/1
+
+--- SCRIPTS MATLAB FUNCTION ---
+
+[TWIP_NL/Plant]
+function xdot = Plant(x, u, d, p_phys)
+xdot = twip_plant_fcn(x, u, d, p_phys);
+end
+
+[TWIP_NL/Controller]
+function u = Controller(x, K_lqr)
+u = twip_ctrl_lqr(x, K_lqr);
+end
+
+[TWIP_NL/Bache]
+function d_pitch = Bache(x_pos, x_dot, p_bache)
+d_pitch = twip_bache_fcn(x_pos, x_dot, p_bache);
+end

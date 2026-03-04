@@ -1,0 +1,930 @@
+========================================================================
+ NOTAS DE DESARROLLO — Modelo Segway Autobalanceado
+ Registro de problemas, decisiones y soluciones
+========================================================================
+
+------------------------------------------------------------------------
+[1] MODELO MATEMÁTICO — Derivación Kane/Lagrange
+------------------------------------------------------------------------
+- Se derivaron las ecuaciones de movimiento mediante el método de Kane
+  (equivalente Lagrangiano) con 6 estados:
+  X = [theta, dtheta, x, dx, alpha, dalpha]
+  Entradas: U = [V_R, V_L] (voltaje rueda derecha e izquierda)
+- Convención: theta=0 erguido, theta>0 inclinado adelante
+- El subsistema cabeceo-avance está acoplado (matriz 2x2)
+- El subsistema de giro está desacoplado por simetría lateral
+- Archivo principal: kane_final.m
+
+------------------------------------------------------------------------
+[2] LINEALIZACIÓN Y ESPACIO DE ESTADOS
+------------------------------------------------------------------------
+- Linealización en equilibrio: X_eq=0, U_eq=0 (posición erguida)
+- Matrices A (6x6) y B (6x2) derivadas analíticamente
+- Sistema inestable (péndulo invertido) — polo real positivo esperado
+- Controlabilidad y observabilidad verificadas por subsistemas separados
+
+------------------------------------------------------------------------
+[3] CONTROLADOR LQR
+------------------------------------------------------------------------
+- Q = diag([2000, 100, 50, 50, 800, 50]) — prioridad en balance y giro
+- R = diag([1, 1]) — coste simétrico de voltaje
+- Saturación: ±12V (límite de motores)
+- Archivo: segway_lqr.m
+
+------------------------------------------------------------------------
+[4] CONTROLADOR PID
+------------------------------------------------------------------------
+- PID solo sobre cabeceo (theta) — subsistema principal
+- Ganancias optimizadas numéricamente
+- Archivo: segway_pid.m
+
+------------------------------------------------------------------------
+[5] ORGANIZACIÓN DE ARCHIVOS
+------------------------------------------------------------------------
+PROBLEMA: Carpeta con archivos redundantes, sin modularidad, cada
+  script contenía toda la derivación completa internamente.
+SOLUCIÓN: Reorganización en MathModel/:
+  - Raíz: solo archivos principales (kane_final, segway_lqr, segway_pid,
+    Full, kane_final_simulink, Simscape_code, LQR_Lineal_vs_NoLineal.slx)
+  - residuales/: archivos obsoletos o generados automáticamente
+  - Kane y sim/outputs/: gráficas y resultados de simulación
+ARCHIVOS RESIDUALES MOVIDOS: segway_simscape.m (bug de ejes),
+  segway_controlador.m, segway_sim_lazo_abierto.m, segway_sfcn.m,
+  segway_control.slx, untitled.m, corazon_N.m, duplicados .slxc
+
+------------------------------------------------------------------------
+[6] SIMSCAPE MULTIBODY — Construcción programática
+------------------------------------------------------------------------
+PROBLEMA 1: segway_simscape.m tenía bug de ejes — faltaba RT_Realign
+  (-90°Y) para restaurar orientación tras RT_PrismaticAlign (+90°Y).
+  Sin esto Joint_alpha giraba sobre el eje incorrecto.
+SOLUCIÓN: Añadir RT_Realign entre Joint_x y Joint_alpha. Archivo
+  corregido: Simscape_code.m (renombrado de segway_debug.m)
+
+PROBLEMA 2: set_param con MotionActuationMode='NoMotion' — valor inválido.
+  Valores válidos: 'ComputedMotion', 'ProvidedMotion'
+SOLUCIÓN: Eliminar la línea MotionActuationMode en Joint_theta para
+  dejar la junta libre por defecto.
+
+PROBLEMA 3: Condición inicial theta0=5° no se aplicaba — el script
+  pasaba theta0=0.0873 (radianes) pero las unidades del bloque son
+  grados por defecto (PositionTargetValueUnits = 'deg').
+  Simscape interpretaba 0.0873° ≈ 0, arrancando desde equilibrio.
+SOLUCIÓN: Definir theta0_deg=5 y pasar ese valor con unidades 'deg'
+  explícitamente en set_param.
+
+PROBLEMA 4: Modelo viejo cacheado en disco — el .slx anterior se
+  reutilizaba aunque el script lo reconstruyera.
+SOLUCIÓN: Añadir delete([modelName '.slx']) antes de new_system()
+  para forzar reconstrucción limpia en cada ejecución.
+
+PROBLEMA 5: DampingCoefficient mal convertido.
+  Calculado como 0.96 N·m·s/rad pero unidades del bloque son N·m/(deg/s).
+  Conversión: 0.96 × (π/180) = 0.01675 N·m/(deg/s)
+  Aunque esto resultó insuficiente para replicar el bem real.
+
+------------------------------------------------------------------------
+[7] COMPARACIÓN SIMSCAPE vs ODE NO LINEAL (lazo abierto)
+------------------------------------------------------------------------
+OBJETIVO: Validar que el modelo 3D Simscape replica las ecuaciones Kane.
+RESULTADO: Las curvas theta(t) coinciden los primeros ~1.5s (ángulos
+  pequeños). Divergen después por dos razones:
+  a) Simscape no tiene rolling constraint (dx = r·phi_dot) — el carro
+     se desplaza libremente en X sin acoplamiento a las ruedas.
+  b) El back-EMF (bem) de la ODE actúa sobre las ruedas acoplado a la
+     matriz de masa. Aproximarlo como DampingCoefficient en Joint_theta
+     es incorrecto para ángulos grandes (es no lineal).
+CONCLUSIÓN PARA DOCUMENTO: La coincidencia inicial valida la geometría,
+  masas e inercias. La diferencia para ángulos grandes es esperada y
+  explicable. Suficiente para validación del modelo en la región de
+  operación del controlador (ángulos pequeños).
+
+------------------------------------------------------------------------
+[8] BACK-EMF (bem) — Naturaleza física
+------------------------------------------------------------------------
+- bem = 1.5 N·m·s/rad — coeficiente de amortiguación del motor
+- Cuando el motor gira genera una fem que se opone al movimiento
+  (efecto generador). Disipa energía en la resistencia interna.
+- En lazo abierto (V=0) actúa como amortiguamiento:
+  tau = -bem·(dx/r - dtheta) por rueda
+- Hace que la ODE converja a 180° (péndulo colgando hacia abajo)
+- Es NO LINEAL: su efecto sobre ddtheta depende de cos(theta) a través
+  de la matriz de masa. No es un amortiguamiento viscoso constante.
+
+------------------------------------------------------------------------
+[9] ROLLING CONSTRAINT — Intentos fallidos y conclusión
+------------------------------------------------------------------------
+OBJETIVO: Acoplar Joint_x con Joint_phi_R para que dx = r·dphi (rueda
+  no resbale). Sin esto el carro "sale volando" sin fricción.
+
+INTENTO 1: Rack and Pinion Constraint (sm_lib)
+  FALLO: Error de violación de posición — los frames base y seguidor
+  están en ubicaciones 3D distintas, lo que Simscape interpreta como
+  inconsistencia geométrica. No aplicable programáticamente.
+
+INTENTO 2: Signal-based constraint (InputMotion en Joint_x)
+  Plan: sensar dphi_R, escalar por r, aplicar como movimiento a Joint_x.
+  FALLO 1: MotionActuationMode='ProvidedMotion' — valor inválido.
+    Valor correcto: 'InputMotion'.
+  FALLO 2: InputMotion en Joint_x causaba loop algebraico:
+    "fewer DOFs with computed force than with motion from inputs".
+  Variante con InputTorque (soft constraint K=1e6): misma cadena pero
+  aplicando fuerza proporcional al error (r·phi - x).
+
+INTENTO 3: Joint sensing para leer phi y x como señales Simulink
+  DIAGNÓSTICO CRÍTICO: En Simscape Multibody 2025b, SensePosition='on'
+  y SenseVelocity='on' en juntas NO crean puertos Outport en el bloque.
+  Los datos van solo al simlog (post-procesado). Outports=0 siempre,
+  incluso tras set_param(model,'SimulationCommand','update').
+  Confirmado para: Revolute Joint, Prismatic Joint.
+
+INTENTO 4: Transform Sensor (sm_lib) con SenseAngle/SenseX
+  Esperábamos que el Transform Sensor sí creara Outports (a diferencia
+  de las juntas). RESULTADO: también Outports=0 tras update.
+  El bloque por defecto tiene LConn:1 RConn:1 Inport:0 Outport:0 y
+  habilitar sensing no crea puertos de señal programáticamente.
+
+CONCLUSIÓN: En MATLAB 2025b, ningún bloque de sensing de Simscape
+  Multibody crea puertos de señal Simulink mediante la API programática
+  (set_param + SimulationCommand='update'). Solo escriben al simlog.
+  El rolling constraint por señales no es implementable sin intervención
+  manual en la GUI.
+
+IMPACTO EN DOCUMENTO: La diferencia Simscape vs ODE para ángulos
+  grandes se explica por la ausencia de rolling constraint y back-EMF.
+  La validación es válida en la región lineal (primeros ~1.5 s, θ<15°).
+
+------------------------------------------------------------------------
+[10] COMPARACIÓN LQR — ODE Lineal vs ODE No Lineal
+------------------------------------------------------------------------
+ARCHIVO: run_comparacion_LQR.m
+OBJETIVO: Demostrar que el K diseñado para el modelo lineal también
+  estabiliza el modelo no lineal (Kane). Ambas ODEs parten de θ₀=5°.
+RESULTADO: Ambas curvas convergen a cero en ~3 s. El modelo no lineal
+  muestra ligera diferencia en los primeros 0.5 s (términos cos(θ) y
+  sin(θ) de la matriz de masa) pero la convergencia es igual.
+FIGURA: 6 subplots — θ, dθ/dt, x, dx/dt, α, voltajes VR/VL.
+  Los voltajes muestran saturación inicial en ±12V y decaen a 0.
+Q = diag([2000,100,50,50,800,50])  R = diag([1,1])
+
+------------------------------------------------------------------------
+[11] SIMSCAPE CON LQR — Estrategia de inyección de torques
+------------------------------------------------------------------------
+PROBLEMA: No hay puertos de señal en juntas → imposible cerrar el lazo
+  LQR en Simscape en tiempo real de forma programática.
+
+SOLUCIÓN ADOPTADA (Simscape_LQR.m):
+  1. Correr ODE No Lineal + LQR → obtener tau_R(t) y tau_L(t)
+     tau = alm·V - bem·(dx/r ± d·dalpha/(2r) - dtheta)
+  2. Publicar en workspace: simin_tauR, simin_tauL  ([t, tau] matrices)
+  3. Construir Simscape con Joint_phi_R/L en TorqueActuationMode='InputTorque'
+  4. Inyectar con From Workspace → SL2PS → Joint Inport
+  5. Simular → visualización 3D del movimiento controlado
+
+LIMITACIÓN: El lazo es open-loop replay (los torques vienen del ODE,
+  no del estado real de Simscape). Válido para visualización 3D.
+  Si el estado Simscape diverge del ODE, el control se degrada.
+  Para ángulos pequeños (región lineal) la aproximación es buena.
+
+PROBLEMA EN IMPLEMENTACIÓN: SL2PS.LConn(1) — índice fuera de rango.
+  Causa: en 2025b el puerto físico de salida del Simulink-PS Converter
+  puede ser RConn en vez de LConn según contexto. Se añadió detección
+  automática (prueba LConn primero, cae a RConn si vacío).
+  También: Joint con InputTorque puede exponer el puerto de torque
+  como LConn adicional en vez de Inport. Mismo mecanismo de detección.
+
+PROBLEMA ADICIONAL: SimscapeLogType no es parámetro válido en 2025b
+  al momento de new_system(). Solución: envolver en try/catch.
+
+------------------------------------------------------------------------
+[12] SCRIPTS FINALES EN RAÍZ (estado actual)
+------------------------------------------------------------------------
+  kane_final.m           — Derivación simbólica pura (Kane/Lagrange)
+  kane_final_simulink.m  — Derivación + LQR + genera Simulink
+  Full.m                 — Derivación + LQR + perturbación T_d
+  segway_lqr.m           — Análisis LQR completo aislado
+  segway_pid.m           — Análisis PID completo aislado
+  Simscape_code.m        — Constructor Simscape 3D (lazo abierto, validación)
+  run_comparacion_LQR.m  — Comparación LQR: ODE Lineal vs ODE No Lineal
+  Simscape_LQR.m         — Simscape 3D con torques LQR inyectados (OBSOLETO)
+  Simscape_LQR_v2.m      — Simscape 3D con LQR en lazo cerrado REAL (FUNCIONAL)
+  LQR_Lineal_vs_NoLineal.slx — Modelo Simulink comparativo
+  segway_sm.slx          — Modelo Simscape lazo abierto (output de Simscape_code)
+
+------------------------------------------------------------------------
+[13] COMPARACIÓN Simscape_LQR v1 vs v2 — Por qué falló v1 y funciona v2
+------------------------------------------------------------------------
+
+CONTEXTO: El objetivo era cerrar el lazo LQR en Simscape Multibody en
+tiempo real, es decir, que Simscape lea el estado del sistema, calcule
+el control, y lo aplique de vuelta al sistema en cada instante de la
+simulación. Esto es un gemelo digital real, no una reproducción.
+
+── VERSIÓN 1 (Simscape_LQR.m) — QUÉ ESTABA PASANDO ──
+
+El problema raíz de v1 era una INCONSISTENCIA entre el modelo con el
+que se diseñó el controlador y el modelo al que se le aplicó.
+
+El controlador K fue diseñado con las ecuaciones de Kane completas de
+6 estados, incluyendo el back-EMF (bem) acoplado a la matriz de masa,
+el subsistema de giro (alpha), y la dinámica de avance (x) libre (sin
+rolling constraint). Ese K supone que cuando se aplica un voltaje V,
+el torque efectivo en la rueda es tau = alm·V - bem·(dphi - dtheta).
+El término de back-EMF es parte activa de la estabilización.
+
+En Simscape, en cambio, solo se aplicaba tau = alm·V. El término bem
+nunca se le decía a las ruedas. Simscape entonces tenía un sistema
+físicamente distinto al que el K conocía: recibía un torque mayor del
+esperado (faltaba la sustracción del back-EMF) y respondía de forma
+diferente. El controlador intentaba estabilizar una planta que no era
+la que él había modelado, y el sistema divergía.
+
+Adicionalmente, v1 tenía 6 estados pero el sensing de x era débil
+porque no había rolling constraint: el cuerpo podía moverse en x sin
+que las ruedas lo acoplaran. Esto hacía que el estado dx que leía el
+controlador no correspondiera al dx real de la física.
+
+También se probaron restricciones cinemáticas (rolling constraint)
+para acoplar x con phi_R, pero todas desestabilizaban el sistema
+porque el K no fue diseñado para esa planta modificada. Introducir
+la restricción cambiaba la planta, y el K ya no era óptimo para ella.
+
+── VERSIÓN 2 (Simscape_LQR_v2.m) — QUÉ CAMBIÓ Y POR QUÉ FUNCIONA ──
+
+La decisión clave de v2 fue diseñar el controlador K y construir el
+modelo Simscape para que describieran exactamente la misma planta.
+Si el controlador asume cierto modelo, Simscape debe ser ese modelo.
+
+1. ELIMINACIÓN DEL BACK-EMF EN AMBOS LADOS.
+   En v2 se asume tau = alm·V (sin back-EMF). Esto simplifica el
+   modelo linealizado, se calcula un K nuevo para esa planta, y
+   Simscape aplica exactamente ese mismo torque alm·V. La planta
+   matemática y la planta física Simscape son idénticas en cuanto
+   al actuador. Ya no hay un término "fantasma" que una sabe y la
+   otra no.
+
+2. REDUCCIÓN A 4 ESTADOS (sin alpha).
+   El subsistema de giro (alpha) se desacopló y se eliminó del
+   diseño. Esto simplifica el problema, reduce el riesgo de
+   inconsistencias entre el observador de estados y el sistema real,
+   y hace el K más robusto. En Simscape, Joint_alpha sigue existiendo
+   físicamente (el segway puede girar si quiere), pero el controlador
+   no intenta controlarlo — simplemente lo ignora.
+
+3. TRACCIÓN EN X COMO FUERZA DIRECTA.
+   En lugar de intentar imponer un rolling constraint (que cambiaba
+   la planta y desestabilizaba K), v2 aplica directamente la fuerza
+   de tracción F_x = alm·(VR+VL)/r al joint prismático. Esto refleja
+   físicamente lo que hacen las ruedas sobre el suelo: generan una
+   fuerza neta de avance proporcional al torque aplicado. No es una
+   restricción cinemática, es una fuerza, y el modelo linealizado
+   ya incluía esa fuerza en la ecuación de traslación.
+
+4. CONSISTENCIA TOTAL MODELO–CONTROLADOR.
+   En v2, las ecuaciones que generan K son exactamente las mismas
+   ecuaciones que Simscape simula. El LQR ve la misma planta que
+   Simscape ejecuta. Por eso el sistema converge.
+
+RESULTADO: theta parte de 5°, converge a 0° en ~3.5 s tanto en la
+ODE no lineal como en Simscape 3D. Las curvas son casi idénticas en
+la bajada inicial y divergen levemente en el subamortiguamiento
+(Simscape llega a -1.7° vs -1.1° en ODE), lo cual es esperado por
+los términos no lineales (cos(theta), centrípeto) que Simscape sí
+calcula y el modelo lineal ignora. Ambas convergen al equilibrio.
+
+LECCIÓN PRINCIPAL: En control de gemelos digitales, la consistencia
+entre el modelo de diseño y el modelo de simulación es más importante
+que la fidelidad absoluta del modelo. Un K diseñado para una planta
+simplificada estabiliza Simscape si y solo si Simscape implementa
+esa misma planta simplificada.
+
+------------------------------------------------------------------------
+[14] SCRIPTS FINALES — ESTADO ACTUALIZADO
+------------------------------------------------------------------------
+  kane_final.m           — Derivación simbólica Kane/Lagrange
+  Full.m                 — Derivación + LQR + perturbación T_d
+  segway_lqr.m           — Análisis LQR aislado con figuras
+  segway_pid.m           — Análisis PID aislado con figuras
+  run_comparacion_LQR.m  — Comparación ODE Lineal vs No Lineal (figura tesis)
+  Simscape_code.m        — Constructor Simscape 3D lazo abierto (validación)
+  Simscape_LQR_v2.m      — LQR 4 estados lazo cerrado (FUNCIONAL, referencia)
+  Simscape_LQR_v3.m      — LQR 4 estados + rutina avance + rampa (FUNCIONAL)
+  Simscape_LQR_v4.m      — LQR 6 estados K1+K2 desacoplados (FUNCIONAL)
+  diag_fisica_v3.m       — Diagnóstico físico para v3
+  diag_fisica_v4.m       — Diagnóstico físico para v4
+  notas_desarrollo.txt   — Este archivo
+
+------------------------------------------------------------------------
+[15] ARQUITECTURA FINAL — GEMELO DIGITAL SEGWAY 6 ESTADOS
+------------------------------------------------------------------------
+
+Este capítulo es el manual de la arquitectura implementada en v4.
+Explica cómo funciona el sistema completo, qué decisión hay detrás
+de cada componente, y cómo replicarlo o modificarlo.
+
+═══════════════════════════════════════════════════════════════
+ PARTE A — EL MODELO MATEMÁTICO
+═══════════════════════════════════════════════════════════════
+
+El segway se modela como un sistema de 6 estados:
+
+  X = [theta, dtheta, x, dx, alpha, dalpha]
+
+  theta  = ángulo de inclinación del cuerpo respecto a la vertical
+  x      = posición de avance del eje de ruedas
+  alpha  = ángulo de orientación horizontal (guiñada)
+
+Las entradas son los voltajes a cada motor: U = [V_R, V_L].
+El torque que cada motor ejerce sobre su rueda es tau = alm·V,
+donde alm es la constante de par del motor (N·m/V).
+No se incluye back-EMF (ver decisión en Parte C).
+
+Las ecuaciones de movimiento vienen de Kane/Lagrange y producen
+tres fuerzas generalizadas:
+
+  F1 = M·g·l·sin(theta) - (tau_R + tau_L)
+       → gobierna ddtheta (rotación del cuerpo)
+
+  F2 = (tau_R + tau_L)/r + M·l·dtheta²·sin(theta)
+       → gobierna ddx (traslación)
+
+  F3 = d·(tau_R - tau_L) / (2·r)
+       → gobierna ddalpha (guiñada)
+
+Las matrices de masa del sistema son:
+
+  M11 = Icy + M·l²         (inercia efectiva de rotación)
+  M12 = M·l                (acoplamiento theta-x)
+  M22 = M + 2m + 2·Iw/r²  (masa efectiva de traslación)
+  M33 = Icz + 2m·(d/2)² + 2·Iw·(d/(2r))² + 2·Iwz
+                            (inercia efectiva de guiñada)
+
+OBSERVACIÓN CRÍTICA: F1 y F2 dependen de (tau_R + tau_L).
+F3 depende de (tau_R - tau_L). Esto significa que el sistema
+está naturalmente desacoplado en dos subsistemas:
+
+  Subsistema avance:  [theta, dtheta, x, dx]   ← responde a la SUMA
+  Subsistema giro:    [alpha, dalpha]           ← responde a la DIFERENCIA
+
+Este desacoplamiento es exacto en las ecuaciones de Kane y es
+la base de toda la arquitectura de control.
+
+═══════════════════════════════════════════════════════════════
+ PARTE B — LAS ENTRADAS DE CONTROL NATURALES
+═══════════════════════════════════════════════════════════════
+
+En lugar de usar V_R y V_L directamente como entradas del
+controlador, se definen dos entradas virtuales:
+
+  Va = (V_R + V_L) / 2   →  controla avance y balance
+  Vd = (V_R - V_L) / 2   →  controla giro
+
+La conversión de vuelta a voltajes de motor es:
+
+  V_R = Va + Vd
+  V_L = Va - Vd
+
+Esta transformación no es una aproximación. Es exacta y explota
+el desacoplamiento físico que ya existe en las ecuaciones de Kane.
+
+Con estas entradas, los subsistemas quedan completamente separados:
+- K1 diseña sobre [theta, dtheta, x, dx] con entrada única Va
+- K2 diseña sobre [alpha, dalpha] con entrada única Vd
+- Cada controlador es independiente del otro
+
+═══════════════════════════════════════════════════════════════
+ PARTE C — DECISIÓN: SIN BACK-EMF
+═══════════════════════════════════════════════════════════════
+
+El back-EMF es el fenómeno por el cual un motor que gira genera
+una tensión inversa proporcional a su velocidad angular. El torque
+efectivo con back-EMF es:
+
+  tau = alm·V - bem·(dphi - dtheta)
+
+donde bem es la constante de back-EMF y dphi es la velocidad
+angular de la rueda.
+
+En versiones anteriores (v1) se intentó incluir back-EMF en la
+ODE pero NO en Simscape. Esto hizo que el controlador K viera
+una planta diferente a la que Simscape simulaba, y el sistema
+divergía.
+
+DECISIÓN: Se elimina el back-EMF de ambos lados.
+
+  - La ODE usa tau = alm·V
+  - Simscape aplica tau = alm·V
+  - K se diseña para esa planta simplificada
+
+El resultado es que K estabiliza Simscape exactamente porque
+ambos describen el mismo sistema. La fidelidad del modelo es
+menor (back-EMF existe en la realidad), pero la consistencia
+modelo-controlador es perfecta.
+
+LECCIÓN GENERAL: En control de gemelos digitales, la consistencia
+entre el modelo de diseño del controlador y el modelo del
+simulador es más importante que la fidelidad absoluta. Si el
+controlador y el simulador no describen la misma planta,
+el sistema diverge independientemente de la calidad del K.
+
+═══════════════════════════════════════════════════════════════
+ PARTE D — TRACCIÓN EN X SIN ROLLING CONSTRAINT
+═══════════════════════════════════════════════════════════════
+
+En un segway real, las ruedas ruedan sobre el suelo sin resbalar:
+dx = r·dphi (rolling constraint). En Simscape, implementar esto
+programáticamente falló por múltiples razones (ver sección [9]).
+
+SOLUCIÓN ADOPTADA: inyectar la fuerza de tracción directamente.
+
+Las ruedas aplican torques tau_R y tau_L sobre sus ejes. Sin
+rolling constraint, esos torques no mueven el cuerpo en x.
+La fuerza neta que las ruedas ejercerían sobre el suelo es:
+
+  F_x = (tau_R + tau_L) / r = alm·(V_R + V_L) / r = 2·alm·Va / r
+
+Esta fuerza se inyecta directamente al Joint_x (prismatic joint
+en InputTorque mode). No es una restricción cinemática — es
+la fuerza física equivalente. El modelo linealizado ya incluía
+esta misma fuerza en F2, por lo que la consistencia se mantiene.
+
+CONSECUENCIA: Las ruedas en Simscape giran visualmente de forma
+correcta (reciben tau_R y tau_L), pero el movimiento del cuerpo
+en x lo gobierna F_x directamente. La visualización es correcta
+aunque la física interna es simplificada.
+
+═══════════════════════════════════════════════════════════════
+ PARTE E — TORQUE DE GUIÑADA EN SIMSCAPE
+═══════════════════════════════════════════════════════════════
+
+El par diferencial que hace girar el segway sobre su eje vertical
+es F3 = d·alm·Vd/r (de las ecuaciones de Kane). Este par se
+aplica directamente al Joint_alpha en InputTorque mode:
+
+  tau_alpha = d·alm·Vd / r   [N·m]
+
+Verificación dimensional: [m]·[N·m/V]·[V]/[m] = [N·m] ✓
+
+La convención de signo es: Vd > 0 → giro a la derecha.
+Esto significa V_R > V_L → rueda derecha más rápida → giro derecha.
+
+Joint_alpha tiene DampingCoefficient=0 porque K2 controla el
+giro activamente. Un amortiguamiento artificial interferiría
+con la dinámica que K2 asume en su diseño.
+
+═══════════════════════════════════════════════════════════════
+ PARTE F — ARQUITECTURA DE SATURACIÓN
+═══════════════════════════════════════════════════════════════
+
+El sistema tiene tres niveles de saturación independientes:
+
+  1. Sat_Va: ±24V sobre Va (salida de K1)
+  2. Sat_Vd: ±24V sobre Vd (salida de K2)
+  3. Sat_VR / Sat_VL: ±24V sobre VR y VL (tras la mezcla)
+
+¿Por qué tres niveles? Porque Va y Vd pueden sumar hasta ±48V
+antes de llegar a los motores. Sin la saturación final, los
+motores recibirían voltajes físicamente imposibles cuando ambos
+controladores actúan simultáneamente al máximo.
+
+Los niveles 1 y 2 dan a cada subsistema su presupuesto completo.
+El nivel 3 protege los motores del exceso combinado.
+
+═══════════════════════════════════════════════════════════════
+ PARTE G — SENSING EN SIMSCAPE MULTIBODY 2025b
+═══════════════════════════════════════════════════════════════
+
+En Simscape Multibody 2025b, cuando se activa SensePosition=on
+y SenseVelocity=on en una junta, los datos de sensing NO aparecen
+como puertos Outport (salidas Simulink normales). En cambio,
+aparecen como puertos físicos adicionales de tipo RConn.
+
+La configuración de puertos es:
+  - Antes de sensing: RConn=1 (solo el frame de conexión)
+  - Con SensePosition+SenseVelocity: RConn=3
+    RConn(1) = frame de conexión mecánica
+    RConn(2) = señal física de posición
+    RConn(3) = señal física de velocidad
+
+Para convertir esas señales físicas a señales Simulink normales
+se usan bloques PS-Simulink Converter (PS2SL):
+  - Entrada: LConn(1) ← conecta al RConn(2) o RConn(3) de la junta
+  - Salida:  Outport(1) → señal Simulink (rad, rad/s, m, m/s)
+
+Para actuar sobre una junta (InputTorque), el torque entra como:
+  - SL2PS Converter: Inport(1) ← señal Simulink, RConn(1) → junta
+  - Junta: LConn(2) ← RConn(1) del SL2PS
+
+La sintaxis de conexión robusta usa strings de nombre de puerto:
+  add_line(mdl, 'SL2PS_nombre/RConn1', 'Joint_nombre/LConn2')
+
+Esto evita errores de índice que ocurren con handle numéricos
+cuando los puertos cambian al habilitar sensing.
+
+VERIFICACIÓN OBLIGATORIA: Siempre hacer update del diagrama
+antes de leer port handles:
+  set_param(modelName, 'SimulationCommand', 'update')
+  pH = get_param([modelName '/Joint_nombre'], 'PortHandles')
+  % Verificar: numel(pH.RConn) == 3 si sensing está activo
+
+═══════════════════════════════════════════════════════════════
+ PARTE H — CONDICIONES INICIALES
+═══════════════════════════════════════════════════════════════
+
+Las condiciones iniciales en Simscape se aplican mediante
+PositionTargetSpecify en cada junta revoluta/prismática:
+
+  set_param([mdl '/Joint_theta'], ...
+    'PositionTargetSpecify','on', ...
+    'PositionTargetValue', num2str(theta0_deg), ...
+    'PositionTargetValueUnits','deg', ...
+    'PositionTargetPriority','High')
+
+TRAMPA CRÍTICA: El valor siempre se pasa en grados, no en
+radianes, porque PositionTargetValueUnits='deg' es el default.
+Si se pasa theta0=0.0873 (valor en radianes), Simscape lo
+interpreta como 0.0873 grados ≈ 0, y el sistema arranca desde
+equilibrio sin que el controlador lo note.
+
+La ODE de referencia usa el mismo valor en radianes:
+  theta0 = theta0_deg * pi/180
+
+La verificación post-simulación es:
+  theta_sm(1) debe ser ≈ theta0 (en radianes)
+  Si theta_sm(1) ≈ 0 y theta0 ≠ 0 → revisar PositionTargetSpecify
+
+═══════════════════════════════════════════════════════════════
+ PARTE I — PARÁMETROS CRÍTICOS DE API EN 2025b
+═══════════════════════════════════════════════════════════════
+
+Los siguientes parámetros fueron encontrados inválidos en 2025b
+al usarlos con set_param. Documentados para no repetir errores:
+
+  INVÁLIDOS:
+  - 'SimscapeLogType'         → usar Simulink.SimulationInput
+  - 'SimMechanicsOpenEditorOnUpdate' → no existe en 2025b
+  - MotionActuationMode='NoMotion'   → valores válidos: 'ComputedMotion'
+  - MotionActuationMode='ProvidedMotion' → válido pero causa loop algebraico
+
+  VÁLIDOS Y NECESARIOS:
+  - 'TorqueActuationMode','InputTorque'  → activa puerto LConn2 de torque
+  - 'TorqueActuationMode','NoTorque'     → junta libre (sin actuación)
+  - 'MotionActuationMode','ComputedMotion' → DOF libre (junta normal)
+  - 'SensePosition','on'   → activa RConn(2) en la junta
+  - 'SenseVelocity','on'   → activa RConn(3) en la junta
+  - 'DampingCoefficient','0' → sin amortiguamiento artificial
+
+  LOGGING:
+  - SimscapeLogType solo puede configurarse ANTES de sim() mediante:
+    simIn = Simulink.SimulationInput(modelName)
+    simIn = simIn.setModelParameter('SimscapeLogType','all', ...
+                                    'SimscapeLogName','simlog')
+    out = sim(simIn)
+  - Acceso post-sim: out.simlog.Joint_nombre.Rz.q.series.time
+                     out.simlog.Joint_nombre.Rz.q.series.values('rad')
+                     out.simlog.Joint_nombre.Rz.w.series.values('rad/s')
+
+═══════════════════════════════════════════════════════════════
+ PARTE J — DIAGNÓSTICO Y VALIDACIÓN
+═══════════════════════════════════════════════════════════════
+
+Antes de simular cualquier versión nueva, correr el script de
+diagnóstico físico correspondiente (diag_fisica_v3.m o v4.m).
+Este script verifica sin ejecutar ninguna simulación:
+
+  1. Plausibilidad de masas e inercias geométricamente
+  2. No singularidad de la matriz de masa (det > 0)
+  3. Signos correctos en A y B (coherencia física)
+  4. Estabilidad de K (todos los polos con parte real < 0)
+  5. Esfuerzo inicial de control y saturación esperada
+  6. Coherencia dimensional de los torques aplicados
+  7. Geometría visual (solapamientos, alturas)
+  8. Consistencia ODE vs Simscape
+
+La validación post-simulación mínima es:
+  - theta(0) en Simscape = theta0 declarado (±1%)
+  - alpha(0) en Simscape = alpha0 declarado (±1%)
+  - theta_final ≈ 0° (< 1°)
+  - alpha_final ≈ 0° (< 1°)
+  - Vd ≈ 0 durante toda la simulación si alpha0=0
+
+Para validar K2 visualmente se necesita alpha0_deg >= 5°.
+Con alpha0 < 5°, Vd inicial < 1V y el giro es imperceptible
+en la animación 3D aunque el controlador esté funcionando.
+
+------------------------------------------------------------------------
+[16] BUGS CONOCIDOS Y CORREGIDOS
+------------------------------------------------------------------------
+
+BUG 1 — Precedencia en M33 (Full.m heredado):
+  INCORRECTO: 2*Iw*(d/(2*r)^2)   ← aplica el cuadrado solo a r
+  CORRECTO:   2*Iw*(d/(2*r))^2   ← aplica el cuadrado a d/(2*r)
+  IMPACTO: M33 sobreestimado. Corregido en v4 (ambos: K2 y ODE).
+
+BUG 2 — Factor 2 en Iwz de M33:
+  INCORRECTO: + Iwz     ← una sola rueda
+  CORRECTO:   + 2*Iwz   ← dos ruedas, cada una contribuye Iwz
+  IMPACTO: M33 subestimado en 0.04 kg·m². Corregido en v4.
+
+BUG 3 — Unidades de PositionTargetValue:
+  INCORRECTO: pasar theta0 en radianes (0.0873)
+  CORRECTO:   pasar theta0_deg en grados (5)
+  IMPACTO: CI no se aplica, sistema arranca desde equilibrio.
+
+BUG 4 — SimscapeLogType como parámetro directo:
+  INCORRECTO: set_param(mdl, 'SimscapeLogType', 'all')
+  CORRECTO:   usar Simulink.SimulationInput.setModelParameter
+  IMPACTO: Error en ejecución "block_diagram does not have parameter".
+
+BUG 5 — Índice de port handles antes de update:
+  INCORRECTO: leer pH.RConn(2) sin hacer update previo
+  CORRECTO:   set_param(mdl,'SimulationCommand','update') primero
+  IMPACTO: "Index exceeds array bounds" porque RConn aún es 1.
+
+------------------------------------------------------------------------
+[17] ARCHIVOS FINALES — INVENTARIO COMPLETO
+------------------------------------------------------------------------
+
+SCRIPTS PRINCIPALES:
+  kane_final.m           — Derivación simbólica Kane/Lagrange pura
+  kane_final_simulink.m  — Derivación + LQR + genera modelo Simulink
+  Full.m                 — Derivación + LQR + perturbación T_d
+  segway_lqr.m           — Análisis LQR completo con figuras
+  segway_pid.m           — Análisis PID completo con figuras
+  run_comparacion_LQR.m  — Comparación ODE lineal vs no lineal (figura tesis)
+
+SIMSCAPE — PROGRESIÓN:
+  Simscape_code.m        — Constructor lazo abierto, validación geométrica
+  Simscape_LQR_v2.m      — LQR 4 estados, lazo cerrado, sin back-EMF (base)
+  Simscape_LQR_v3.m      — v2 + rutina de avance + escenario de rampa
+  Simscape_LQR_v4.m      — v3 + 6 estados + K1/K2 desacoplados (ACTUAL)
+
+DIAGNÓSTICOS:
+  diag_fisica_v3.m       — Verificación física pre-simulación para v3
+  diag_fisica_v4.m       — Verificación física pre-simulación para v4
+
+MODELOS GENERADOS (outputs de los scripts):
+  Segway_LQR_v2.slx      — output de Simscape_LQR_v2.m
+  Segway_Testbench_v3.slx — output de Simscape_LQR_v3.m
+  Segway_Testbench_v4.slx — output de Simscape_LQR_v4.m
+
+MODELOS SIMULINK:
+  LQR_Lineal_vs_NoLineal.slx — Comparación gráfica ODE lineal vs no lineal
+
+========================================================================
+ FIN DE NOTAS — Actualizar conforme avance el desarrollo
+========================================================================
+
+------------------------------------------------------------------------
+[18] REFACTORIZACIÓN v4 → v4.1 — COMPACTACIÓN Y UNIFICACIÓN
+------------------------------------------------------------------------
+
+MOTIVACIÓN:
+  Simscape_LQR_v4.m era un script monolítico que construía Y simulaba
+  en una sola pasada. Esto significaba que cualquier cambio en ganancias
+  K requería reconstruir todo el modelo desde cero. Se plantearon dos
+  enfoques y finalmente se eligió uno unificado.
+
+ENFOQUE DESCARTADO — build_v4.m + run_v4.m separados:
+  - build_v4.m construye Segway_Testbench_v4.slx sin simular
+  - run_v4.m carga el .slx existente, actualiza K1/K2 via Stateflow API,
+    simula y grafica
+  - Guard en build_v4.m: si el .slx existe, pide que el usuario escriba
+    "SI" antes de sobrescribirlo
+  - Problema: flujo de dos archivos más complicado para el usuario
+  - Estado: archivos creados pero NO son el flujo principal activo
+
+ENFOQUE ADOPTADO — Simscape_LQR_v41.m unificado:
+  - Siempre empieza con: clear; clc; close all; bdclose all;
+  - Elimina el .slx anterior si existe (bdclose + delete)
+  - Reconstruye Segway_Testbench_v41.slx completo desde cero
+  - Calcula K1/K2 y los hardcodea en el modelo
+  - Simula y grafica, todo en un solo run
+  - modelName = 'Segway_Testbench_v41'
+  - Ventaja: sin estado residual, sin conflictos de versión, reproducible
+
+COMPACTACIÓN DEL CONTROLADOR (Secciones 7+8+9 → 1 bloque):
+  En v4 el controlador tenía ~20 bloques Simulink:
+    - Mux para armar vector de estado
+    - Gain K1 (1×4), Gain K2 (1×2)
+    - Sumadores de error theta_ref y alpha_ref
+    - Saturaciones Va, Vd
+    - Bloques de mezcla Va+Vd, Va-Vd
+    - Saturaciones VR, VL
+    - SL2PS converters para aplicar torques
+
+  En v4.1 el controlador es un único bloque MATLAB Function "LQR_Controller":
+    Entradas (8): theta, dtheta, x, dx, alpha, dalpha, theta_ref, alpha_ref
+    Salidas  (4): VR, VL, Va, Vd
+    Lógica interna:
+      Xe1 = [theta-theta_ref, dtheta, x, dx]
+      Xe2 = [alpha-alpha_ref, dalpha]
+      Va = sat(-K1*Xe1, ±24V)
+      Vd = sat(-K2*Xe2, ±24V)
+      VR = sat(Va+Vd, ±24V)
+      VL = sat(Va-Vd, ±24V)
+
+  K1 y K2 se inyectan al código del bloque via Stateflow API:
+    rt = sfroot();
+    ctrl_chart = rt.find('-isa','Stateflow.EMChart', ...
+                         'Path',[modelName '/LQR_Controller']);
+    ctrl_chart.Script = func_str;   % string con function completa
+
+  Ventaja: K1/K2 están en el código del bloque, no en workspaces ni
+  máscaras. run_v4.m actualiza K reescribiendo ctrl_chart.Script.
+
+------------------------------------------------------------------------
+[19] GESTIÓN DE POSICIONES DE BLOQUES — WORKFLOW leer_posiciones.m
+------------------------------------------------------------------------
+
+PROBLEMA:
+  arrangeSystem() ordena los bloques automáticamente, pero el
+  usuario puede reorganizarlos manualmente en Simulink. Cuando el
+  script reconstruye el modelo (bdclose + new_system), pierde toda
+  posición manual. La solución es capturar las posiciones después
+  de reorganizar y hardcodearlas en el script.
+
+HERRAMIENTA: leer_posiciones.m
+  - Requiere que el modelo esté abierto en Simulink
+  - Usa find_system(..., 'SearchDepth',1, 'Type','block')
+  - Para cada bloque imprime: nombre, Position [x1 y1 x2 y2],
+    IconShape (circular/rectangular), Orientation (right/left/up/down)
+  - El usuario copia la salida de consola y se la pasa al asistente
+  - El asistente actualiza los set_param('Position',...) en v41.m
+
+FLUJO DE TRABAJO ESTABLECIDO:
+  1. Correr Simscape_LQR_v41.m (genera el modelo)
+  2. Reorganizar bloques manualmente en Simulink (mover, girar, etc.)
+  3. Correr leer_posiciones.m en consola de MATLAB
+  4. Copiar salida y pegarla en el chat
+  5. El asistente actualiza todos los set_param de posición en v41.m
+  6. La próxima vez que corra v41.m, los bloques aparecen en las
+     posiciones exactas que el usuario estableció
+
+PROPIEDADES CAPTURADAS (además de Position):
+  - IconShape: 'circular' (default) o 'rectangular' (para sumadores)
+  - Orientation: 'right' (default) o 'left' (para bloques girados/flipped)
+    Los bloques Wheel_L, Wheel_R, Body_Solid tienen Orientation='left'
+
+ITERACIONES REALIZADAS: 6 rondas de reorganización, todas aplicadas
+  a Simscape_LQR_v41.m. Las posiciones actuales de los PS2SL converters:
+    ps_pos = {[1767 400 1877 430],[1767 465 1877 495],...,[1767 725 1877 755]}
+
+AUTO-LAYOUT: arrangeSystem
+  Se añadió Simulink.BlockDiagram.arrangeSystem(modelName) al final de
+  la construcción del modelo para eliminar cables diagonales. Se aplica
+  ANTES de guardar el .slx. Los set_param de posición manual sobrescriben
+  el auto-layout, por lo que el orden es:
+    1. add_block / add_line (construir)
+    2. set_param('Position',...) para cada bloque (posicionar)
+    3. arrangeSystem (limpiar cables restantes)
+    4. save_system (guardar)
+    5. sim() (simular)
+
+------------------------------------------------------------------------
+[20] FIGURA UNIFICADA — 3 SUBPLOTS EN UNA SOLA VENTANA
+------------------------------------------------------------------------
+
+CAMBIO: En v4 se generaban 3 figuras separadas (figure 1, 2, 3).
+  En v4.1 se unifican en una sola figura con subplot(3,1,x):
+
+  figure('Name','Segway LQR v4.1','Position',[50 50 900 800]);
+  subplot(3,1,1): theta(t) — ángulo de inclinación
+  subplot(3,1,2): alpha(t) — ángulo de guiñada
+  subplot(3,1,3): Va(t) y Vd(t) — voltajes de control
+
+  Motivación: facilita captura de pantalla única para la tesis.
+
+------------------------------------------------------------------------
+[21] SEGUIMIENTO DE VELOCIDAD — velocidad_ref.m
+------------------------------------------------------------------------
+
+CONTEXTO:
+  La arquitectura LQR v4.1 estabiliza postura (theta→0, alpha→0) y
+  mantiene al robot quieto. Para seguimiento de velocidad lineal se
+  necesita un estado de referencia adicional: v_ref (m/s).
+
+PLANTEAMIENTO TEÓRICO:
+  Para que dx → v_ref con error estacionario cero, se añade un
+  integrador del error de velocidad como estado aumentado:
+
+    x_int = integral(dx - v_ref)   →   d(x_int)/dt = dx - v_ref
+
+  El estado aumentado del subsistema de avance queda:
+    [theta, dtheta, dx, x_int]
+
+  TRAMPA CRÍTICA: No incluir x (posición) en el vector de control.
+  Si se incluye x, entonces [x, x_int] son ambas integrales de dx
+  → dependencia lineal → rango de controlabilidad 4/5 → sistema
+  no controlable → LQR devuelve K infinita o falla con Riccati.
+
+  SOLUCIÓN: Eliminar x del vector de control. El vector reducido es:
+    [theta, dtheta, dx, x_int]  (4 estados)
+
+  La matriz de sistema reducida A1r (3×3 para [theta,dtheta,dx]):
+    A1r = [0,               1, 0;
+           M22*M*g*l/det0,  0, 0;
+          -M12*M*g*l/det0,  0, 0];
+    B1r = [0; b21; b41];
+
+  Aumentada con el integrador (4×4):
+    A1a = [A1r, zeros(3,1); 0 0 1 0];
+    B1a = [B1r; 0];
+
+  Pesos:
+    Q1a = diag([2000, 100, 50, q_int])  con q_int = 50/(1.5*5)
+    R1 = 1
+
+IMPLEMENTACIÓN: velocidad_ref.m
+  - ODE puro, sin Simulink ni Simscape
+  - 7 estados en la ODE: [theta, dtheta, x, dx, alpha, dalpha, x_int]
+    (x se integra en la ODE para tener posición en las gráficas,
+     pero NO entra al controlador)
+  - Escenario: robot quieto en equilibrio, escalón v_ref=1 m/s a t=3s
+  - 4 subplots: theta(t), dx vs v_ref, Va(t), integral_ev(t)
+  - K1 es 1×4 (avance aumentado), K2 es 1×2 (giro, igual que v4.1)
+
+ERRORES ENCONTRADOS DURANTE DESARROLLO:
+  1. LQR error "Cannot compute stabilizing Riccati solution":
+     Causa: Q(3,3)=0 (sin peso en x) → sistema no detectable.
+     Fix inicial: Q1a = diag([2000,100,1,50,q_int]) → 5 estados con x
+     Fix definitivo: eliminar x del vector de control completamente.
+
+  2. LQR error "gain matrix K are infinite" + controlabilidad 4/5:
+     Causa: A1a 5×5 incluía x e x_int, dependencia lineal.
+     Diagnóstico: rank(ctrb(A1a,B1a)) = 4 ≠ 5.
+     Fix: diseñar A1r como [theta,dtheta,dx] (3×3), aumentar a 4×4
+     con x_int. Controlabilidad resultante: 4/4 OK.
+
+NOTA: La función ode_vel usa la variable vr (velocidad de referencia
+  con escalón): si t >= t_vref → vr = v_ref_val, else vr = 0.
+  El error de velocidad es d_int = dx - vr (en el código: X(4)-vr).
+
+------------------------------------------------------------------------
+[22] LEAN-TO-SPEED — CONCEPTO Y DISEÑO PENDIENTE
+------------------------------------------------------------------------
+
+MOTIVACIÓN FÍSICA:
+  En un segway real, el rider controla la velocidad inclinándose:
+  - Inclinarse hacia adelante → el segway acelera para recuperar balance
+  - Inclinarse hacia atrás   → el segway frena
+  - Posición vertical        → velocidad crucero mantenida
+
+  Esto es lean-to-speed: la inclinación del cuerpo ES la referencia
+  de velocidad. No hay joystick ni slider externo; el cuerpo inclina
+  y el controlador interpreta esa inclinación como un comando.
+
+ARQUITECTURA PROPUESTA — dos capas:
+  Capa exterior (velocidad): K_vel o integrador → genera theta_ref
+    v_ref = Kv · theta   (o con filtro pasa-bajas)
+    El rider se inclina theta grados → v_ref = Kv·theta m/s
+
+  Capa interior (balance): K1 aumentado → mantiene theta ≈ theta_ref
+    Error = theta - theta_ref (no theta - 0)
+    El robot se inclina para mantener la velocidad que el rider pide
+
+PREGUNTAS DE DISEÑO RESUELTAS (sesión de análisis):
+  1. v_ref = Kv·theta → sí, proporcional directo es el más simple
+  2. Kv ≈ 1-3 m/s por grado → depende de parámetros físicos
+  3. theta_ref no es fijo → es dinámico, calculado cada instante
+  4. El integrador de velocidad sigue siendo necesario en K1
+  5. Arranque: theta=0 → v_ref=0 → robot quieto (correcto)
+  6. Frenado: rider se incorpora (theta→0) → v_ref→0 → robot frena
+  7. Saturación de v_ref necesaria (ej. ±3 m/s) para seguridad
+  8. K1 ya diseñado es reutilizable, solo cambia el punto de referencia
+  9. La arquitectura es la misma que velocidad_ref.m + bloque de mapeo
+  10. Implementación: nuevo .m separado, ODE puro, sin Simulink
+
+ESTADO: Concepto aprobado, implementación pendiente.
+  Siguiente paso: crear lean_to_speed.m basado en velocidad_ref.m
+  con theta_ref dinámico = theta_medido (o con filtro), y
+  v_ref = Kv·theta_rider donde theta_rider es la inclinación deseada.
+
+------------------------------------------------------------------------
+[23] ARCHIVOS ACTUALIZADOS — INVENTARIO v4.1
+------------------------------------------------------------------------
+
+SCRIPTS ACTIVOS (flujo principal):
+  Simscape_LQR_v41.m   — Constructor + simulador unificado (PRINCIPAL)
+  leer_posiciones.m    — Captura posiciones de bloques del modelo abierto
+  velocidad_ref.m      — ODE puro: seguimiento de velocidad con estado aumentado
+  kane_final.m         — Derivación simbólica Kane/Lagrange
+  segway_lqr.m         — Análisis LQR con figuras
+  segway_pid.m         — Análisis PID con figuras
+  run_comparacion_LQR.m — Comparación ODE lineal vs no lineal
+
+SCRIPTS SECUNDARIOS (creados pero no flujo principal):
+  build_v4.m           — Constructor Segway_Testbench_v4.slx (sin simular)
+  run_v4.m             — Cargador/simulador para modelo v4 existente
+  diag_fisica_v4.m     — Diagnóstico físico pre-simulación
+
+MODELOS GENERADOS:
+  Segway_Testbench_v41.slx — output de Simscape_LQR_v41.m (ACTUAL)
+  Segway_Testbench_v4.slx  — output de build_v4.m / Simscape_LQR_v4.m
+
+PENDIENTE:
+  lean_to_speed.m      — ODE puro: lean-to-speed (theta → v_ref → balance)
+
+========================================================================
+ FIN DE NOTAS — Actualizar conforme avance el desarrollo
+========================================================================

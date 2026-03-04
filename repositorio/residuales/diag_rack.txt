@@ -1,0 +1,7 @@
+  PinionRadius                             = '1'
+  PinionRadius_conf                        = 'compiletime'
+  PinionRadiusUnits                        = 'm'
+  BlockFunction                            = 'simmechanics.library.gears_couplings_drives.gears.rack_and_pinion'
+
+LConn: 1
+RConn: 1

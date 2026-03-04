@@ -1,0 +1,112 @@
+================================================================
+INSTRUCCIONES PARA CLAUDE CODE — AUDITORÍA DEL PROYECTO SEGWAY
+================================================================
+
+LÉEME ANTES DE HACER CUALQUIER COSA.
+
+----------------------------------------------------------------
+CONTEXTO DEL PROYECTO
+----------------------------------------------------------------
+Este es un proyecto de control de un vehículo autobalanceado tipo
+Segway, modelado en Simscape Multibody. Tiene 3 grados de libertad
+(ángulo de cabeceo, posición x, velocidad angular de ruedas).
+
+Se han implementado o intentado implementar los siguientes
+controladores: PID, LQR, y combinaciones de ambos.
+
+El proyecto creció de forma orgánica — un archivo por experimento —
+y ahora está desordenado. El objetivo es reorganizarlo.
+
+----------------------------------------------------------------
+TU PRIMERA TAREA: AUDITORÍA SILENCIOSA
+----------------------------------------------------------------
+Antes de escribir una sola línea de código o mover cualquier
+archivo, debes hacer lo siguiente:
+
+PASO 1 — Listar todo
+  Usa Bash para listar TODOS los archivos de la carpeta raíz y
+  subcarpetas con sus tamaños y fechas:
+    dir /s /b /a-d (en cmd) o Get-ChildItem -Recurse (PowerShell)
+
+PASO 2 — Leer en orden cronológico
+  Lee los archivos .m y .slx de más antiguo a más reciente.
+  Para cada archivo .m lee SOLO las primeras 40 líneas.
+  NO leas el archivo completo todavía.
+
+PASO 3 — Clasificar internamente
+  Mientras lees, clasifica mentalmente cada archivo en una de
+  estas categorías:
+    A) ACTIVO     — se usa hoy, tiene código funcional reciente
+    B) RESIDUAL   — versión antigua de algo que evolucionó
+    C) EXPERIMENTO— prueba puntual que ya no se necesita
+    D) UTILIDAD   — script de apoyo reutilizable
+    E) DESCONOCIDO— no está claro qué hace sin leerlo completo
+
+PASO 4 — Reportar ANTES de actuar
+  Cuando termines de leer, preséntame una tabla así:
+
+  ARCHIVO              | CATEGORÍA | RAZÓN
+  ---------------------|-----------|---------------------------
+  segway_v3.m          | ACTIVO    | Más reciente, tiene PID+LQR
+  segway_v1.m          | RESIDUAL  | Versión anterior de v3
+  prueba_gains.m       | EXPERIMENTO| Barrido de ganancias
+  ...
+
+  Luego PREGÚNTAME si estás en lo correcto antes de continuar.
+
+----------------------------------------------------------------
+NO HAGAS ESTO SIN PEDÍRMELO PRIMERO
+----------------------------------------------------------------
+  ✗ No borres ni muevas ningún archivo
+  ✗ No renombres nada
+  ✗ No modifiques ningún .m ni .slx
+  ✗ No crees carpetas nuevas
+  ✗ No "mejores" código que no te pedí que tocaras
+
+----------------------------------------------------------------
+SEGUNDA TAREA (solo después de que yo apruebe el reporte)
+----------------------------------------------------------------
+Proponer la siguiente estructura de carpetas para el proyecto:
+
+  /Proyecto
+    CLAUDE.md                  ← contexto fijo del proyecto
+    params.m                   ← parámetros físicos del vehículo
+    modelo_segway.slx          ← modelo Simscape base
+    /controladores
+        ctrl_PID.m
+        ctrl_LQR.m
+        ctrl_combinado.m
+    /simulaciones
+        sim_runner.m           ← lanza simulación dado controlador
+    /resultados
+        guardar_resultado.m
+    comparar.m                 ← compara controladores
+    /archivo_historico          ← aquí van los RESIDUALES y EXPERIMENTOS
+
+  Preséntame el plan de migración archivo por archivo y
+  ESPERA MI APROBACIÓN antes de ejecutarlo.
+
+----------------------------------------------------------------
+TERCERA TAREA (solo después de que yo apruebe la migración)
+----------------------------------------------------------------
+Crear el archivo CLAUDE.md con:
+  - Descripción del modelo físico del Segway
+  - Lista de parámetros clave y sus unidades
+  - Descripción de cada controlador implementado
+  - Convención de nombres de variables de salida
+  - Criterios de desempeño usados (ISE, overshoot, etc.)
+  - Instrucciones de cómo correr una simulación nueva
+
+----------------------------------------------------------------
+REGLA DE ORO PARA ESTE PROYECTO
+----------------------------------------------------------------
+Siempre que vayas a hacer algo que no sea leer o reportar,
+escribe primero:
+
+  "Voy a [acción]. ¿Procedo?"
+
+Y espera confirmación.
+
+================================================================
+FIN DE INSTRUCCIONES
+================================================================
