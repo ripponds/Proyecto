@@ -4,23 +4,28 @@
 %  Figura: theta, x, alpha
 
 clear; clc; close all;
+run('params.m');
 
-%% ── 1. PARÁMETROS ────────────────────────────────────────────────────────
-M   = 80;    r   = 0.20;  d   = 0.60;  l   = 0.90;  g   = 9.81;
-m   = 2;     Icy = 10;    Icz = 12;    Icx = 12;
-Iw  = 0.08;  Iwz = 0.04;
-alm = 2.0;   bem = 1.5;
+%% ── MODELO MATEMÁTICO ────────────────────────────────────────────────────
+mat_file = 'segway_modelo_resultados.mat';
+if ~exist('A_num', 'var')
+    if exist(mat_file, 'file')
+        load(mat_file, 'A_num','B_num','A_ca','B_ca','A_giro','B_giro','polos');
+        fprintf('Modelo cargado desde %s\n', mat_file);
+    else
+        fprintf('Corriendo ModelKane_final.m (solo esta vez)...\n');
+        run('ModelKane_final.m');
+    end
+end
+run('params.m');   % restaura variables numéricas (syms de ModelKane las sobreescribe)
 
+%% ── 1. CONDICIONES DE SIMULACIÓN ─────────────────────────────────────────
 theta0_deg = 5;
 theta0     = theta0_deg * pi/180;
 t_sim      = 10;
 
 %% ── 2. LINEALIZACIÓN ─────────────────────────────────────────────────────
-M11  = Icy + M*l^2;
-M12  = M*l;
-M22  = M + 2*m + 2*Iw/r^2;
-M33  = Icz + 2*m*(d/2)^2 + 2*Iw*(d/(2*r))^2 + 2*Iwz;
-det0 = M11*M22 - M12^2;
+%  M11, M12, M22, M33, det0 ya vienen de params.m
 
 dF1_dth=M*g*l; dF1_doth=-2*bem; dF1_dox=2*bem/r; dF1_VR=-alm; dF1_VL=-alm;
 dF2_doth=2*bem/r; dF2_dox=-2*bem/r^2; dF2_VR=alm/r; dF2_VL=alm/r;

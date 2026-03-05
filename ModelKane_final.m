@@ -13,8 +13,16 @@
 
 %% S0 — CONFIGURACIÓN VISUAL Y PARÁMETROS
 clear; clc; close all;
+run('params.m');   % ← fuente única de verdad para parámetros físicos
 
-% Configuración Dark Mode 
+% Preservar valores numéricos en p ANTES de que syms sobreescriba las variables
+p.M       = M;    p.m       = m;    p.r       = r;
+p.d       = d;    p.l       = l;    p.g       = g;
+p.Icy     = Icy;  p.Icz     = Icz;  p.Icx     = Icx;
+p.Iw      = Iw;   p.Iwz     = Iwz;
+p.alpha_m = alm;  p.beta_m  = bem;
+
+% Configuración Dark Mode
 set(groot, 'defaultFigureColor', [0.15 0.15 0.15]);
 set(groot, 'defaultAxesColor', [0.1 0.1 0.1]);
 set(groot, 'defaultAxesXColor', [0.9 0.9 0.9]);
@@ -30,20 +38,6 @@ syms M m r d l g real
 syms Icy Icz Icx Iw Iwz real
 syms alpha_m beta_m real
 syms V_R V_L real
-
-p.M       = 80;        % kg     cuerpo + persona
-p.m       = 2;         % kg     masa una rueda
-p.r       = 0.20;      % m      radio rueda
-p.d       = 0.60;      % m      separación entre ruedas
-p.l       = 0.90;      % m      eje ruedas → CM (positivo = arriba)
-p.g       = 9.81;      % m/s²
-p.Icy     = 10;        % kg·m²  inercia cabeceo
-p.Icz     = 12;        % kg·m²  inercia giro
-p.Icx     = 12;        % kg·m²  inercia alabeo
-p.Iw      = 0.08;      % kg·m²  inercia axial rueda
-p.Iwz     = 0.04;      % kg·m²  inercia transversal rueda
-p.alpha_m = 2.0;       % N·m/V
-p.beta_m  = 1.5;       % N·m·s/rad
 
 %% S1 — ENERGÍA CINÉTICA Y POTENCIAL
 fprintf('S1: Energías\n')

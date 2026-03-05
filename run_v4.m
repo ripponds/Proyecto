@@ -6,24 +6,24 @@
 %  ─ PREREQUISITO: correr build_v4.m al menos una vez primero
 % =========================================================================
 clc; close all;
+run('params.m');
+
+%% ── MODELO MATEMÁTICO ────────────────────────────────────────────────────
+mat_file = 'segway_modelo_resultados.mat';
+if ~exist('A_num', 'var')
+    if exist(mat_file, 'file')
+        load(mat_file, 'A_num','B_num','A_ca','B_ca','A_giro','B_giro','polos');
+        fprintf('Modelo cargado desde %s\n', mat_file);
+    else
+        fprintf('Corriendo ModelKane_final.m (solo esta vez)...\n');
+        run('ModelKane_final.m');
+    end
+end
+run('params.m');   % restaura variables numéricas (syms de ModelKane las sobreescribe)
 
 %% =========================================================================
-%  1. PARAMETROS — MODIFICA AQUI TUS VALORES REALES
+%  1. CONDICIONES INICIALES Y ESCENARIO
 % =========================================================================
-M      = 80;      % masa cuerpo [kg]
-r      = 0.20;    % radio rueda [m]
-d      = 0.60;    % separacion entre ruedas [m]
-l      = 0.90;    % dist. eje ruedas -> CM cuerpo [m]
-g      = 9.81;
-m      = 2;       % masa cada rueda [kg]
-Icy    = 10;      % inercia cuerpo pitch [kg·m^2]
-Icz    = 12;      % inercia cuerpo yaw   [kg·m^2]
-Icx    = 12;      % inercia cuerpo roll  [kg·m^2]
-Iw     = 0.08;    % inercia rueda spin   [kg·m^2]
-Iwz    = 0.04;    % inercia rueda transversal [kg·m^2]
-alm    = 2.0;     % ganancia par motor [N·m/V]
-
-% -- Condiciones iniciales --
 theta0_deg = 5;      % perturbacion balanceo [deg]
 alpha0_deg = 10;     % perturbacion giro     [deg]  <- valida K2
 theta0     = theta0_deg * pi/180;
@@ -60,12 +60,8 @@ end
 
 %% =========================================================================
 %  2. LINEALIZACION Y LQR
+%  M11, M12, M22, M33, det0 ya vienen de params.m
 % =========================================================================
-M11  = Icy + M*l^2;
-M12  = M*l;
-M22  = M + 2*m + 2*Iw/r^2;
-M33  = Icz + 2*m*(d/2)^2 + 2*Iw*(d/(2*r))^2 + 2*Iwz;
-det0 = M11*M22 - M12^2;
 
 % ── K1: subsistema avance ─────────────────────────────────────────────
 A1 = zeros(4);

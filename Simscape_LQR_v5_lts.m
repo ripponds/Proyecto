@@ -8,14 +8,24 @@
 %  ─ MATLAB/Simulink R2025b
 % =========================================================================
 clear; clc; close all; bdclose all;
+run('params.m');
+
+%% ── MODELO MATEMÁTICO ────────────────────────────────────────────────────
+mat_file = 'segway_modelo_resultados.mat';
+if ~exist('A_num', 'var')
+    if exist(mat_file, 'file')
+        load(mat_file, 'A_num','B_num','A_ca','B_ca','A_giro','B_giro','polos');
+        fprintf('Modelo cargado desde %s\n', mat_file);
+    else
+        fprintf('Corriendo ModelKane_final.m (solo esta vez)...\n');
+        run('ModelKane_final.m');
+    end
+end
+run('params.m');   % restaura variables numéricas (syms de ModelKane las sobreescribe)
 
 %% =========================================================================
-%  1. PARAMETROS
+%  1. CONDICIONES INICIALES Y ESCENARIO
 % =========================================================================
-M=80; r=0.20; d=0.60; l=0.90; g=9.81;
-m=2; Icy=10; Icz=12; Icx=12; Iw=0.08; Iwz=0.04; alm=2.0;
-body_W=0.40; body_D=0.20; body_H=1.60;
-
 theta0_deg = 0;      % CI balanceo [deg] — rider sube vertical
 alpha0_deg = 0;      % CI giro     [deg]
 theta0     = theta0_deg*pi/180;
@@ -48,12 +58,8 @@ fprintf('=========================================================\n');
 
 %% =========================================================================
 %  2. LINEALIZACION Y LQR
+%  M11, M12, M22, M33, det0 ya vienen de params.m
 % =========================================================================
-M11  = Icy + M*l^2;
-M12  = M*l;
-M22  = M + 2*m + 2*Iw/r^2;
-M33  = Icz + 2*m*(d/2)^2 + 2*Iw*(d/(2*r))^2 + 2*Iwz;
-det0 = M11*M22 - M12^2;
 
 b21 = (M22*(-2*alm) - M12*(2*alm/r)) / det0;
 b41 = ( M12*(2*alm) + M11*(2*alm/r)) / det0;
@@ -701,6 +707,12 @@ try
     sgtitle(sprintf('Segway v5  |  \\alpha_{ref} = %.0f%s  |  K_v = %.1f',...
         alpha_ref_deg, char(176), Kv),...
         'FontSize',11,'FontWeight','bold','Color',TXT);
+
+    % ── GUARDAR FIGURAS ──────────────────────────────────────────────────
+    fig_dir = fullfile(fileparts(mfilename('fullpath')), 'debug');
+    exportgraphics(figure(1), fullfile(fig_dir, 'debug_estados.png'),  'Resolution', 150);
+    exportgraphics(figure(2), fullfile(fig_dir, 'debug_trayectoria.png'), 'Resolution', 150);
+    fprintf('[Figuras] debug_estados.png y debug_trayectoria.png guardadas\n');
 
 catch e
     fprintf('[Graficas] FALLO: %s\n', e.message);
